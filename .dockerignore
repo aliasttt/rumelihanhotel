@@ -1,0 +1,16 @@
+.git
+.agents
+.codex
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+venv/
+.venv/
+env/
+.env
+db.sqlite3
+staticfiles/
+node_modules/
+.DS_Store
