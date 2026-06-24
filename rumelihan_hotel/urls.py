@@ -6,6 +6,7 @@ from django.views.generic import RedirectView
 
 
 urlpatterns = [
+    path("favicon.ico", RedirectView.as_view(url="/static/images/favicons/favicon.ico", permanent=True)),
     path("admin/", admin.site.urls),
     path("", RedirectView.as_view(pattern_name="hotel:home", permanent=False), {"lang": "tr"}),
     path("<str:lang>/", include("hotel.urls")),
