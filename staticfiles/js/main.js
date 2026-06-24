@@ -41,6 +41,10 @@ function updateScrollEffects() {
     const rect = section.getBoundingClientRect();
     const progress = clamp((viewport - rect.top) / (viewport + rect.height), 0, 1);
     section.querySelectorAll("[data-parallax-speed]").forEach((layer) => {
+      if (window.innerWidth <= 560 && layer.classList.contains("hero-ornament")) {
+        layer.style.transform = "";
+        return;
+      }
       const speed = Number(layer.dataset.parallaxSpeed || 0);
       layer.style.transform = `translate3d(0, ${(progress - 0.5) * speed * 220}px, 0)`;
     });
