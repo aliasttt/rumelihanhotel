@@ -8,7 +8,7 @@
     </video>
     <img class="hero-bg hero-fallback" src="{% if slide.image %}{{ slide.image.url }}{% else %}{% static 'images/placeholders/hero-boutique.jpg' %}{% endif %}" alt="{{ slide.title_en }}">
     <div class="hero-ornament" data-parallax-speed="-0.08">
-      <img src="/media/seed/rumelihan-logo.jpeg" alt="Rumelihan Hotel logo">
+      <img src="{% static 'images/brand/rumelihan-ornament-logo.png' %}" alt="Rumelihan Hotel logo">
     </div>
     <div class="hero-content reveal text-reveal">
       <p class="eyebrow">Beyoglu, Istanbul</p>
