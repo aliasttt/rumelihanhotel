@@ -25,10 +25,10 @@
   <aside class="contact-card reveal-right">
     <img src="{% static 'images/placeholders/lobby-reception.jpg' %}" alt="Rumelihan reception">
     <h2>{{ site_settings.hotel_name }}</h2>
-    <p>{% if lang == 'tr' %}{{ site_settings.address_tr }}{% else %}{{ site_settings.address_en }}{% endif %}</p>
-    {% if site_settings.phone %}<a href="tel:{{ site_settings.phone }}">{{ site_settings.phone }}</a>{% endif %}
+    <p>{{ contact_address }}</p>
+    <a href="tel:{{ contact_phone_tel }}">{{ contact_phone_display }}</a>
     {% if site_settings.email %}<a href="mailto:{{ site_settings.email }}">{{ site_settings.email }}</a>{% endif %}
-    {% if site_settings.whatsapp %}<a class="btn small outline" href="https://wa.me/{{ site_settings.whatsapp }}">{% if lang == 'tr' %}WhatsApp ile Yazın{% else %}Message on WhatsApp{% endif %}</a>{% endif %}
+    <a class="btn small outline" href="https://wa.me/{{ contact_whatsapp }}" target="_blank" rel="noreferrer">{% if lang == 'tr' %}WhatsApp ile Yazın{% else %}Message on WhatsApp{% endif %}</a>
   </aside>
 </section>
 
@@ -61,16 +61,12 @@
 
 <section class="location-layout">
   <div class="map-box reveal-left">
-    {% if site_settings.google_maps_embed %}
-      {{ site_settings.google_maps_embed|safe }}
-    {% else %}
-      <span>{% if lang == 'tr' %}Harita alanı admin panelinden düzenlenebilir.{% else %}Map area can be edited from the admin panel.{% endif %}</span>
-    {% endif %}
+    {{ contact_map_embed|safe }}
   </div>
   <div class="reveal-right">
     <p class="eyebrow">Beyoglu</p>
     <h2>{% if lang == 'tr' %}Otele Ulaşım{% else %}Reaching the Hotel{% endif %}</h2>
-    <p>{% if lang == 'tr' %}Adres, harita bağlantısı ve çevre bilgileri admin panelinden güncellenebilir. Misafirleriniz her zaman doğru bilgiye ulaşır.{% else %}Address, map link and area notes can be updated from the admin panel, keeping guest information accurate.{% endif %}</p>
+    <p>{% if lang == 'tr' %}Adres: {{ contact_address }}{% else %}Address: {{ contact_address }}{% endif %}</p>
   </div>
 </section>
 {% endblock %}

@@ -11,7 +11,7 @@
     <p class="eyebrow">{% if lang == 'tr' %}Konum{% else %}Location{% endif %}</p>
     <h2>{% if lang == 'tr' %}Beyoğlu'ndan Şehre Açılan Zarif Bir Başlangıç{% else %}An Elegant Starting Point from Beyoglu into the City{% endif %}</h2>
     <p>{% if lang == 'tr' %}İstiklal Caddesi, Taksim, Galata, Karaköy ve Tarihi Yarımada rotaları için Rumelihan Hotel, İstanbul'u yürüyerek ve kolay ulaşım bağlantılarıyla keşfetmek isteyen misafirler için idealdir.{% else %}For routes toward Istiklal Street, Taksim, Galata, Karakoy and the Historical Peninsula, Rumelihan Hotel is ideal for guests who want to discover Istanbul on foot and with easy transport links.{% endif %}</p>
-    <p>{% if lang == 'tr' %}{{ settings_obj.address_tr }}{% else %}{{ settings_obj.address_en }}{% endif %}</p>
+    <p>{{ contact_address }}</p>
   </div>
   <div class="layered-photos reveal-right">
     <img src="{% static 'images/placeholders/beyoglu-istanbul.jpg' %}" alt="Beyoglu Istanbul">
@@ -50,11 +50,7 @@
     </ul>
   </div>
   <div class="map-box reveal-right">
-    {% if settings_obj.google_maps_embed %}
-      {{ settings_obj.google_maps_embed|safe }}
-    {% else %}
-      <span>{% if lang == 'tr' %}Harita alanı admin panelinden düzenlenebilir.{% else %}Map area can be edited from the admin panel.{% endif %}</span>
-    {% endif %}
+    {{ contact_map_embed|safe }}
   </div>
 </section>
 
