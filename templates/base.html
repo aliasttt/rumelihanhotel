@@ -42,6 +42,9 @@
     <div>
       <p class="footer-brand">{{ site_settings.hotel_name }}</p>
       <p>{% if lang == 'tr' %}{{ site_settings.footer_text_tr }}{% else %}{{ site_settings.footer_text_en }}{% endif %}</p>
+      {% if site_settings.address_tr or site_settings.address_en %}
+        <p class="footer-address">{% if lang == 'tr' %}{{ site_settings.address_tr }}{% else %}{{ site_settings.address_en }}{% endif %}</p>
+      {% endif %}
     </div>
     <div class="footer-contact">
       {% if site_settings.phone %}<a href="tel:{{ site_settings.phone }}">{{ site_settings.phone }}</a>{% endif %}
@@ -49,6 +52,13 @@
       {% if site_settings.instagram_url %}<a href="{{ site_settings.instagram_url }}" target="_blank" rel="noreferrer">Instagram</a>{% endif %}
     </div>
   </footer>
+  {% if site_settings.whatsapp %}
+    <a class="floating-whatsapp" href="https://wa.me/{{ site_settings.whatsapp }}" target="_blank" rel="noreferrer" aria-label="WhatsApp">
+      <svg viewBox="0 0 32 32" aria-hidden="true">
+        <path d="M16.01 3.2c-7.05 0-12.78 5.58-12.78 12.45 0 2.2.6 4.35 1.74 6.22L3.1 28.8l7.18-1.82a13.1 13.1 0 0 0 5.73 1.32c7.05 0 12.78-5.58 12.78-12.45S23.06 3.2 16.01 3.2Zm0 22.98c-1.84 0-3.64-.47-5.22-1.36l-.38-.22-4.25 1.08 1.1-4.06-.25-.42a10.14 10.14 0 0 1-1.56-5.55c0-5.7 4.74-10.33 10.56-10.33s10.56 4.63 10.56 10.33-4.74 10.33-10.56 10.33Zm5.8-7.73c-.32-.16-1.88-.9-2.17-1-.29-.1-.5-.16-.72.16-.21.31-.82 1-.99 1.2-.18.2-.36.23-.67.08-.32-.16-1.34-.48-2.55-1.53-.94-.82-1.58-1.84-1.76-2.15-.18-.31-.02-.48.14-.64.14-.14.32-.36.47-.54.16-.18.21-.31.32-.52.11-.21.05-.39-.03-.55-.08-.16-.72-1.69-.98-2.32-.26-.61-.52-.53-.72-.54h-.61c-.21 0-.55.08-.84.39-.29.31-1.1 1.05-1.1 2.56s1.13 2.97 1.29 3.18c.16.21 2.22 3.3 5.38 4.63.75.32 1.34.51 1.8.65.76.23 1.45.2 1.99.12.61-.09 1.88-.75 2.14-1.47.27-.72.27-1.34.19-1.47-.08-.13-.29-.21-.61-.36Z"/>
+      </svg>
+    </a>
+  {% endif %}
   <script src="{% static 'js/main.js' %}"></script>
 </body>
 </html>
