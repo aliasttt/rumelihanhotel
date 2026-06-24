@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<section class="room-hero-detail">
+  <img src="{% if room.main_image %}{{ room.main_image.url }}{% else %}{% static 'images/placeholders/double-room.jpg' %}{% endif %}" alt="{{ room.title_en }}">
+  <div>
+    <p class="eyebrow">{% if lang == 'tr' %}Oda Detayı{% else %}Room Detail{% endif %}</p>
+    <h1>{% if lang == 'tr' %}{{ room.title_tr }}{% else %}{{ room.title_en }}{% endif %}</h1>
+    <p>{% if lang == 'tr' %}{{ room.short_description_tr }}{% else %}{{ room.short_description_en }}{% endif %}</p>
+  </div>
+</section>
+
+<section class="room-detail">
+  <div class="room-gallery reveal-left">
+    <img class="main-room-image" src="{% if room.main_image %}{{ room.main_image.url }}{% else %}{% static 'images/placeholders/double-room.jpg' %}{% endif %}" alt="{{ room.title_en }}">
+    <div class="thumb-grid">
+      {% for item in room.gallery_images.all %}
+        <img src="{% if item.image %}{{ item.image.url }}{% else %}{% static 'images/placeholders/hallway-details.jpg' %}{% endif %}" alt="{% if lang == 'tr' %}{{ item.alt_text_tr }}{% else %}{{ item.alt_text_en }}{% endif %}">
+      {% empty %}
+        <img src="{% static 'images/placeholders/bathroom.jpg' %}" alt="Bathroom">
+        <img src="{% static 'images/placeholders/hallway-details.jpg' %}" alt="Interior detail">
+        <img src="{% static 'images/placeholders/breakfast-dining.jpg' %}" alt="Breakfast">
+      {% endfor %}
+    </div>
+  </div>
+  <aside class="room-panel reveal-right">
+    <h2>{% if lang == 'tr' %}Oda Özellikleri{% else %}Room Features{% endif %}</h2>
+    <p>{% if lang == 'tr' %}{{ room.full_description_tr }}{% else %}{{ room.full_description_en }}{% endif %}</p>
+    <ul class="feature-list">
+      <li>{{ room.capacity }} {% if lang == 'tr' %}kişi kapasitesi{% else %}guest capacity{% endif %}</li>
+      <li>{% if lang == 'tr' %}{{ room.bed_type_tr }}{% else %}{{ room.bed_type_en }}{% endif %}</li>
+      {% if room.size %}<li>{{ room.size }}</li>{% endif %}
+      {% for feature in room_features %}<li>{{ feature }}</li>{% endfor %}
+    </ul>
+    <a class="btn gold" href="{% url 'hotel:contact' lang=lang %}">{% if lang == 'tr' %}Rezervasyon Talebi{% else %}Reservation Request{% endif %}</a>
+  </aside>
+</section>
+
+<section class="section">
+  <div class="section-head reveal">
+    <p class="eyebrow">{% if lang == 'tr' %}Konfor{% else %}Comfort{% endif %}</p>
+    <h2>{% if lang == 'tr' %}Bu Odayı Özel Kılan Detaylar{% else %}Details that Make This Room Special{% endif %}</h2>
+  </div>
+  <div class="service-grid stagger">
+    <article class="service-card reveal"><span class="service-icon">01</span><h3>{% if lang == 'tr' %}Dinlendirici Atmosfer{% else %}Restful Atmosphere{% endif %}</h3><p>{% if lang == 'tr' %}Koyu tonlar, sıcak ışık ve sade düzenle şehir sonrası sakin bir alan.{% else %}Dark tones, warm light and a simple layout create a calm space after the city.{% endif %}</p></article>
+    <article class="service-card reveal"><span class="service-icon">02</span><h3>{% if lang == 'tr' %}Pratik Kullanım{% else %}Practical Use{% endif %}</h3><p>{% if lang == 'tr' %}Günlük ihtiyaçlar için temiz, anlaşılır ve rahat bir oda düzeni.{% else %}A clean, intuitive and comfortable room layout for daily needs.{% endif %}</p></article>
+    <article class="service-card reveal"><span class="service-icon">03</span><h3>{% if lang == 'tr' %}Butik Dokunuş{% else %}Boutique Touch{% endif %}</h3><p>{% if lang == 'tr' %}Tarihi otel hissini taşıyan renkler, dokular ve küçük detaylar.{% else %}Colors, textures and small details carrying the feeling of a historic hotel.{% endif %}</p></article>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-head reveal">
+    <p class="eyebrow">{% if lang == 'tr' %}Benzer Odalar{% else %}Related Rooms{% endif %}</p>
+    <h2>{% if lang == 'tr' %}Diğer Seçenekleri Keşfedin{% else %}Explore Other Options{% endif %}</h2>
+  </div>
+  <div class="card-grid">
+    {% for other in related_rooms %}
+      <article class="room-card reveal">
+        <a class="image-frame" href="{% url 'hotel:room_detail' lang=lang slug=other.slug %}">
+          <img src="{% if other.main_image %}{{ other.main_image.url }}{% else %}{% static 'images/placeholders/double-room.jpg' %}{% endif %}" alt="{{ other.title_en }}">
+        </a>
+        <div class="card-body">
+          <h3>{% if lang == 'tr' %}{{ other.title_tr }}{% else %}{{ other.title_en }}{% endif %}</h3>
+          <a class="text-link" href="{% url 'hotel:room_detail' lang=lang slug=other.slug %}">{% if lang == 'tr' %}Detaylar{% else %}Details{% endif %}</a>
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="cta-strip reveal">
+  <p class="eyebrow">Rumelihan Hotel</p>
+  <h2>{% if lang == 'tr' %}Bu Oda İçin Müsaitlik Sorun{% else %}Ask Availability for This Room{% endif %}</h2>
+  <a class="btn gold" href="{% url 'hotel:contact' lang=lang %}">{% if lang == 'tr' %}İletişime Geç{% else %}Contact Us{% endif %}</a>
+</section>
+{% endblock %}

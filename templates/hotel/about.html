@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<section class="page-hero ornate-page">
+  <p class="eyebrow">Rumelihan Hotel</p>
+  <h1>{% if lang == 'tr' %}Tarihi Beyoğlu Ruhuyla Butik Konaklama{% else %}Boutique Hospitality with the Spirit of Historic Beyoglu{% endif %}</h1>
+</section>
+
+<section class="split-section image-story">
+  <div class="layered-photos reveal-left">
+    <img src="{% static 'images/placeholders/hotel-exterior.jpg' %}" alt="Hotel exterior">
+    <img src="{% static 'images/placeholders/lobby-reception.jpg' %}" alt="Reception">
+    <img src="{% static 'images/placeholders/hallway-details.jpg' %}" alt="Historical details">
+  </div>
+  <div class="reveal-right">
+    <p class="eyebrow">{% if lang == 'tr' %}Hikaye{% else %}Story{% endif %}</p>
+    <h2>{% if lang == 'tr' %}Eski İstanbul'a Yakışan Sakin Bir Zarafet{% else %}A Quiet Elegance Worthy of Old Istanbul{% endif %}</h2>
+    {% if lang == 'tr' %}
+      <p>Rumelihan Hotel, Beyoğlu'nun çok katmanlı geçmişinden ilham alan, geleneksel çizgileri modern konforla birleştiren bir butik otel yaklaşımıyla misafirlerini ağırlar.</p>
+      <p>İstiklal Caddesi'ne yakın konumu, klasik dekorasyon dili ve sıcak servis anlayışıyla şehirde hem keşif hem de dinlenme arayan konuklar için rafine bir atmosfer sunar.</p>
+    {% else %}
+      <p>Rumelihan Hotel welcomes guests with a boutique approach inspired by Beyoglu's layered past, bringing traditional lines together with modern comfort.</p>
+      <p>Close to Istiklal Street, shaped by classic decoration and warm service, it offers a refined atmosphere for guests who want both discovery and rest.</p>
+    {% endif %}
+  </div>
+</section>
+
+<section class="section heritage-timeline">
+  <div class="section-head reveal">
+    <p class="eyebrow">{% if lang == 'tr' %}Miras{% else %}Heritage{% endif %}</p>
+    <h2>{% if lang == 'tr' %}Konaklamaya Dönüşen Bir Şehir Hafızası{% else %}A City Memory Turned into a Stay{% endif %}</h2>
+  </div>
+  <div class="timeline-grid stagger">
+    <article class="timeline-card reveal"><span>01</span><h3>{% if lang == 'tr' %}Beyoğlu Dokusu{% else %}Beyoglu Texture{% endif %}</h3><p>{% if lang == 'tr' %}Dar sokaklar, tarihi cepheler ve kültürel ritim otelin ruhunu belirler.{% else %}Narrow streets, historical facades and cultural rhythm shape the hotel's mood.{% endif %}</p></article>
+    <article class="timeline-card reveal"><span>02</span><h3>{% if lang == 'tr' %}Butik Ölçek{% else %}Boutique Scale{% endif %}</h3><p>{% if lang == 'tr' %}Kişisel hissettiren servis ve sakin ortak alanlar ön plandadır.{% else %}Personal service and calm shared spaces stay at the center of the experience.{% endif %}</p></article>
+    <article class="timeline-card reveal"><span>03</span><h3>{% if lang == 'tr' %}Modern Konfor{% else %}Modern Comfort{% endif %}</h3><p>{% if lang == 'tr' %}Günlük ihtiyaçlar sade, temiz ve güvenilir şekilde çözülür.{% else %}Daily needs are handled with a simple, clean and reliable sense of comfort.{% endif %}</p></article>
+  </div>
+</section>
+
+<section class="quote-panel reveal" data-parallax-section>
+  <div data-parallax-speed="-0.06">
+    <p>{% if lang == 'tr' %}"Rumelihan'da her detay, İstanbul'un geçmişiyle bugünün konforu arasında zarif bir köprü kurar."{% else %}"At Rumelihan, every detail builds an elegant bridge between Istanbul's past and today's comfort."{% endif %}</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-head reveal">
+    <p class="eyebrow">{% if lang == 'tr' %}Neden Seviliyor{% else %}Why Guests Love It{% endif %}</p>
+    <h2>{% if lang == 'tr' %}Konum, Atmosfer ve Sakin Misafirperverlik{% else %}Location, Atmosphere and Calm Hospitality{% endif %}</h2>
+  </div>
+  <div class="service-grid stagger">
+    {% for item in amenities|slice:":6" %}
+      <article class="service-card reveal">
+        <span class="service-icon">{{ item.icon|default:"RH" }}</span>
+        <h3>{% if lang == 'tr' %}{{ item.title_tr }}{% else %}{{ item.title_en }}{% endif %}</h3>
+        <p>{% if lang == 'tr' %}{{ item.description_tr }}{% else %}{{ item.description_en }}{% endif %}</p>
+      </article>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="cta-strip reveal">
+  <p class="eyebrow">Rumelihan Hotel</p>
+  <h2>{% if lang == 'tr' %}Beyoğlu'ndaki Konaklamanızı Bir Hikayeye Dönüştürün{% else %}Turn Your Beyoglu Stay into a Story{% endif %}</h2>
+  <a class="btn gold" href="{% url 'hotel:rooms' lang=lang %}">{% if lang == 'tr' %}Odaları İncele{% else %}Explore Rooms{% endif %}</a>
+</section>
+{% endblock %}

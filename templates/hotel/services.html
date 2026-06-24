@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<section class="page-hero ornate-page">
+  <p class="eyebrow">{% if lang == 'tr' %}Hizmetler{% else %}Services{% endif %}</p>
+  <h1>{% if lang == 'tr' %}Konforlu Bir İstanbul Konaklaması İçin İnce Düşünülmüş Detaylar{% else %}Thoughtful Details for a Comfortable Istanbul Stay{% endif %}</h1>
+</section>
+
+<section class="split-section image-story">
+  <div class="reveal-left">
+    <p class="eyebrow">{% if lang == 'tr' %}Servis Anlayışı{% else %}Service Mood{% endif %}</p>
+    <h2>{% if lang == 'tr' %}Sakin, Yardımcı ve Özenli{% else %}Calm, Helpful and Attentive{% endif %}</h2>
+    <p>{% if lang == 'tr' %}Rumelihan Hotel'de servis, konaklamayı kolaylaştıran küçük ama önemli detaylardan oluşur: temiz odalar, güçlü bağlantı, yerel öneriler ve gerektiğinde hızlı destek.{% else %}At Rumelihan Hotel, service is made of small but meaningful details: clean rooms, strong connection, local guidance and quick assistance when needed.{% endif %}</p>
+  </div>
+  <div class="layered-photos reveal-right">
+    <img src="{% static 'images/placeholders/breakfast-dining.jpg' %}" alt="Breakfast">
+    <img src="{% static 'images/placeholders/lobby-reception.jpg' %}" alt="Reception">
+    <img src="{% static 'images/placeholders/family-room.jpg' %}" alt="Family room">
+  </div>
+</section>
+
+<section class="service-grid">
+  {% for service in services %}
+    <article class="service-card reveal">
+      <span class="service-icon">{{ service.icon|default:"RH" }}</span>
+      <h2>{% if lang == 'tr' %}{{ service.title_tr }}{% else %}{{ service.title_en }}{% endif %}</h2>
+      <p>{% if lang == 'tr' %}{{ service.description_tr }}{% else %}{{ service.description_en }}{% endif %}</p>
+    </article>
+  {% endfor %}
+</section>
+
+<section class="section">
+  <div class="section-head reveal">
+    <p class="eyebrow">{% if lang == 'tr' %}Öne Çıkanlar{% else %}Highlights{% endif %}</p>
+    <h2>{% if lang == 'tr' %}Şehir Otelinde Beklenen Rahatlık{% else %}The Ease Expected from a City Hotel{% endif %}</h2>
+  </div>
+  <div class="timeline-grid stagger">
+    <article class="timeline-card reveal"><span>01</span><h3>{% if lang == 'tr' %}Kahvaltı{% else %}Breakfast{% endif %}</h3><p>{% if lang == 'tr' %}Güne sade, sıcak ve pratik bir başlangıç.{% else %}A simple, warm and practical start to the day.{% endif %}</p></article>
+    <article class="timeline-card reveal"><span>02</span><h3>{% if lang == 'tr' %}Yerel Rehberlik{% else %}Local Guidance{% endif %}</h3><p>{% if lang == 'tr' %}Beyoğlu, Galata ve Karaköy rotaları için öneriler.{% else %}Recommendations for Beyoglu, Galata and Karakoy routes.{% endif %}</p></article>
+    <article class="timeline-card reveal"><span>03</span><h3>{% if lang == 'tr' %}Aile Rahatlığı{% else %}Family Comfort{% endif %}</h3><p>{% if lang == 'tr' %}Birlikte seyahat eden misafirler için uygun oda seçenekleri.{% else %}Suitable room options for guests travelling together.{% endif %}</p></article>
+  </div>
+</section>
+
+<section class="cta-strip reveal">
+  <p class="eyebrow">Rumelihan Hotel</p>
+  <h2>{% if lang == 'tr' %}İhtiyacınız Olan Desteği Rezervasyon Öncesi Sorabilirsiniz{% else %}Ask About the Support You Need Before Booking{% endif %}</h2>
+  <a class="btn gold" href="{% url 'hotel:contact' lang=lang %}">{% if lang == 'tr' %}Bize Ulaşın{% else %}Contact Us{% endif %}</a>
+</section>
+{% endblock %}

@@ -1,0 +1,169 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<section class="hero cinematic-hero" data-parallax-section>
+  {% for slide in hero_slides|slice:":1" %}
+    <video class="hero-video" data-parallax-speed="0.18" autoplay muted loop playsinline preload="metadata" poster="{% if slide.image %}{{ slide.image.url }}{% else %}{% static 'images/placeholders/hero-boutique.jpg' %}{% endif %}">
+      <source src="{% static 'videos/rumelihan-hero.mp4' %}" type="video/mp4">
+    </video>
+    <img class="hero-bg hero-fallback" src="{% if slide.image %}{{ slide.image.url }}{% else %}{% static 'images/placeholders/hero-boutique.jpg' %}{% endif %}" alt="{{ slide.title_en }}">
+    <div class="hero-ornament" data-parallax-speed="-0.08">
+      <img src="/media/seed/rumelihan-logo.jpeg" alt="Rumelihan Hotel logo">
+    </div>
+    <div class="hero-content reveal text-reveal">
+      <p class="eyebrow">Beyoglu, Istanbul</p>
+      <h1>{% if lang == 'tr' %}{{ slide.title_tr }}{% else %}{{ slide.title_en }}{% endif %}</h1>
+      <p>{% if lang == 'tr' %}{{ slide.subtitle_tr }}{% else %}{{ slide.subtitle_en }}{% endif %}</p>
+      <div class="hero-actions">
+        <a class="btn gold" href="{% url 'hotel:rooms' lang=lang %}">{% if lang == 'tr' %}Odaları Keşfet{% else %}Explore Rooms{% endif %}</a>
+        <a class="btn ghost" href="{% url 'hotel:contact' lang=lang %}">{% if lang == 'tr' %}Rezervasyon Talebi{% else %}Reservation Request{% endif %}</a>
+      </div>
+    </div>
+  {% empty %}
+    <video class="hero-video" data-parallax-speed="0.18" autoplay muted loop playsinline preload="metadata" poster="{% static 'images/placeholders/hero-boutique.jpg' %}">
+      <source src="{% static 'videos/rumelihan-hero.mp4' %}" type="video/mp4">
+    </video>
+    <img class="hero-bg hero-fallback" src="{% static 'images/placeholders/hero-boutique.jpg' %}" alt="Rumelihan Hotel">
+    <div class="hero-content reveal text-reveal">
+      <p class="eyebrow">Beyoglu, Istanbul</p>
+      <h1>Rumelihan Hotel</h1>
+      <p>{% if lang == 'tr' %}İstanbul'un kalbinde tarihi bir butik otel deneyimi.{% else %}A historic boutique hotel experience in the heart of Istanbul.{% endif %}</p>
+    </div>
+  {% endfor %}
+</section>
+
+<section class="section intro luxury-band reveal">
+  <div class="ornament draw-line"></div>
+  <p class="eyebrow">{% if lang == 'tr' %}Hoş Geldiniz{% else %}Welcome{% endif %}</p>
+  <h2>{% if lang == 'tr' %}Beyoğlu'nun Tarihi Dokusunda Zarif Bir Konaklama{% else %}An Elegant Stay in the Historic Texture of Beyoglu{% endif %}</h2>
+  <p>{% if lang == 'tr' %}Rumelihan Hotel, klasik İstanbul ruhunu sıcak misafirperverlik, özenli detaylar ve koyu yeşil-altın bir atmosferle buluşturan seçkin bir şehir otelidir.{% else %}Rumelihan Hotel is a refined city hotel where classic Istanbul spirit meets warm hospitality, thoughtful details and a deep green-and-gold atmosphere.{% endif %}</p>
+  <div class="stat-row">
+    <span><strong>4</strong>{% if lang == 'tr' %} oda tipi{% else %} room types{% endif %}</span>
+    <span><strong>24/7</strong>{% if lang == 'tr' %} resepsiyon{% else %} reception{% endif %}</span>
+    <span><strong>5 dk</strong>{% if lang == 'tr' %} İstiklal{% else %} to Istiklal{% endif %}</span>
+  </div>
+</section>
+
+<section class="split-section image-story">
+  <div class="reveal-left">
+    <p class="eyebrow">{% if lang == 'tr' %}Atmosfer{% else %}Atmosphere{% endif %}</p>
+    <h2>{% if lang == 'tr' %}Sıcak Işıklar, Tarihi Detaylar, Sakin Bir Ritim{% else %}Warm Light, Historic Details, a Calm Rhythm{% endif %}</h2>
+    <p>{% if lang == 'tr' %}Lobi, koridorlar ve odalar; eski İstanbul hissini modern konforla birlikte yaşatacak şekilde tasarlanmıştır. Her köşe, şehirden döndüğünüzde dingin bir mola sunar.{% else %}The lobby, corridors and rooms are shaped to preserve an old Istanbul feeling while keeping modern comfort close. Every corner offers a quiet pause after the city.{% endif %}</p>
+    <a class="btn outline" href="{% url 'hotel:about' lang=lang %}">{% if lang == 'tr' %}Hikayeyi Oku{% else %}Read the Story{% endif %}</a>
+  </div>
+  <div class="layered-photos reveal-right">
+    <img src="{% static 'images/placeholders/lobby-reception.jpg' %}" alt="Lobby">
+    <img src="{% static 'images/placeholders/hallway-details.jpg' %}" alt="Historical hallway">
+    <img src="{% static 'images/placeholders/hotel-exterior.jpg' %}" alt="Hotel exterior">
+  </div>
+</section>
+
+<section class="section rooms-showcase">
+  <div class="section-head reveal">
+    <p class="eyebrow">{% if lang == 'tr' %}Konaklama{% else %}Stay{% endif %}</p>
+    <h2>{% if lang == 'tr' %}Karakter Sahibi Odalar{% else %}Rooms with Character{% endif %}</h2>
+    <p>{% if lang == 'tr' %}Tek kişilik seyahatlerden aile konaklamalarına kadar, her oda sade lüks ve tarihi sıcaklık duygusunu taşır.{% else %}From solo travel to family stays, each room carries a quiet sense of luxury and historical warmth.{% endif %}</p>
+  </div>
+  <div class="card-grid stagger">
+    {% for room in featured_rooms %}
+      <article class="room-card reveal">
+        <a href="{% url 'hotel:room_detail' lang=lang slug=room.slug %}" class="image-frame mask-reveal">
+          <img src="{% if room.main_image %}{{ room.main_image.url }}{% else %}{% static 'images/placeholders/double-room.jpg' %}{% endif %}" alt="{{ room.title_en }}">
+        </a>
+        <div class="card-body">
+          <h3>{% if lang == 'tr' %}{{ room.title_tr }}{% else %}{{ room.title_en }}{% endif %}</h3>
+          <p>{% if lang == 'tr' %}{{ room.short_description_tr }}{% else %}{{ room.short_description_en }}{% endif %}</p>
+          <div class="room-meta">
+            <span>{{ room.capacity }} {% if lang == 'tr' %}kişi{% else %}guests{% endif %}</span>
+            <span>{% if lang == 'tr' %}{{ room.bed_type_tr }}{% else %}{{ room.bed_type_en }}{% endif %}</span>
+          </div>
+          <a class="text-link" href="{% url 'hotel:room_detail' lang=lang slug=room.slug %}">{% if lang == 'tr' %}Detayları Gör{% else %}View Details{% endif %}</a>
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="center-showcase" data-showcase>
+  <div class="showcase-frame">
+    <div class="showcase-photo-stack">
+      <img src="{% if showcase and showcase.image %}{{ showcase.image.url }}{% else %}{% static 'images/placeholders/breakfast-dining.jpg' %}{% endif %}" alt="Rumelihan showcase">
+      <img src="{% static 'images/placeholders/beyoglu-istanbul.jpg' %}" alt="Beyoglu Istanbul">
+    </div>
+    <div class="showcase-copy">
+      <div class="ornament draw-line"></div>
+      <p class="eyebrow">Rumelihan</p>
+      <h2 data-scroll-text>{% if showcase %}{% if lang == 'tr' %}{{ showcase.title_tr }}{% else %}{{ showcase.title_en }}{% endif %}{% else %}{% if lang == 'tr' %}Tarihin Zarafetiyle Konaklayın{% else %}Stay in the Elegance of History{% endif %}{% endif %}</h2>
+      <p>{% if showcase %}{% if lang == 'tr' %}{{ showcase.subtitle_tr }}{% else %}{{ showcase.subtitle_en }}{% endif %}{% else %}{% if lang == 'tr' %}Geçmişin ruhunu, bugünün konforuyla aynı çatı altında hissedin.{% else %}Feel the spirit of the past under the same roof as modern comfort.{% endif %}{% endif %}</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-head reveal">
+    <p class="eyebrow">{% if lang == 'tr' %}Hizmetler{% else %}Services{% endif %}</p>
+    <h2>{% if lang == 'tr' %}Konaklamayı Kolaylaştıran Detaylar{% else %}Details that Make the Stay Effortless{% endif %}</h2>
+  </div>
+  <div class="service-grid stagger">
+    {% for service in services_preview %}
+      <article class="service-card reveal">
+        <span class="service-icon">{{ service.icon|default:"RH" }}</span>
+        <h3>{% if lang == 'tr' %}{{ service.title_tr }}{% else %}{{ service.title_en }}{% endif %}</h3>
+        <p>{% if lang == 'tr' %}{{ service.description_tr }}{% else %}{{ service.description_en }}{% endif %}</p>
+      </article>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="scroll-gallery" data-horizontal-scroll>
+  <div class="section-head reveal">
+    <p class="eyebrow">{% if lang == 'tr' %}Görsel Hikaye{% else %}Visual Story{% endif %}</p>
+    <h2>{% if lang == 'tr' %}Odadan Sokağa Uzanan Bir İstanbul Hissi{% else %}An Istanbul Feeling from Room to Street{% endif %}</h2>
+  </div>
+  <div class="scroll-track">
+    {% for image in gallery_preview %}
+      <figure>
+        <img src="{% if image.image %}{{ image.image.url }}{% else %}{% static 'images/placeholders/gallery-hotel.jpg' %}{% endif %}" alt="{{ image.title_en }}">
+        <figcaption>{% if lang == 'tr' %}{{ image.title_tr }}{% else %}{{ image.title_en }}{% endif %}</figcaption>
+      </figure>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-head reveal">
+    <p class="eyebrow">{% if lang == 'tr' %}Misafir Yorumları{% else %}Guest Notes{% endif %}</p>
+    <h2>{% if lang == 'tr' %}Beyoğlu'nda Hatırlanan Bir Konaklama{% else %}A Beyoglu Stay Guests Remember{% endif %}</h2>
+  </div>
+  <div class="testimonial-grid stagger">
+    {% for item in testimonials|slice:":3" %}
+      <blockquote class="testimonial-card reveal">
+        <p>{% if lang == 'tr' %}{{ item.text_tr }}{% else %}{{ item.text_en }}{% endif %}</p>
+        <cite>{{ item.name }}{% if item.location %}, {{ item.location }}{% endif %}</cite>
+      </blockquote>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="split-section attraction-preview">
+  <div class="reveal-left">
+    <p class="eyebrow">{% if lang == 'tr' %}Çevre{% else %}Nearby{% endif %}</p>
+    <h2>{% if lang == 'tr' %}Beyoğlu'nun En Güzel Rotalarına Yakın{% else %}Close to Beyoglu's Finest Routes{% endif %}</h2>
+    <p>{% if lang == 'tr' %}İstiklal, Taksim, Galata ve Karaköy'e uzanan yürüyüşler için oteliniz sakin ve şık bir başlangıç noktasıdır.{% else %}For walks toward Istiklal, Taksim, Galata and Karakoy, the hotel is a calm and elegant starting point.{% endif %}</p>
+  </div>
+  <div class="attraction-list reveal-right">
+    {% for place in nearby_attractions|slice:":4" %}
+      <a href="{% url 'hotel:location' lang=lang %}">
+        <strong>{% if lang == 'tr' %}{{ place.title_tr }}{% else %}{{ place.title_en }}{% endif %}</strong>
+        <span>{% if lang == 'tr' %}{{ place.distance_tr }}{% else %}{{ place.distance_en }}{% endif %}</span>
+      </a>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="cta-strip reveal">
+  <p class="eyebrow">Rumelihan Hotel</p>
+  <h2>{% if lang == 'tr' %}İstanbul Seyahatinizi Zarif Bir Başlangıçla Planlayın{% else %}Plan Your Istanbul Stay with an Elegant Beginning{% endif %}</h2>
+  <a class="btn gold" href="{% url 'hotel:contact' lang=lang %}">{% if lang == 'tr' %}İletişime Geç{% else %}Contact Us{% endif %}</a>
+</section>
+{% endblock %}

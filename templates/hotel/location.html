@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<section class="page-hero ornate-page">
+  <p class="eyebrow">Beyoglu</p>
+  <h1>{% if lang == 'tr' %}İstanbul'un En Canlı Rotalarına Yakın Tarihi Konum{% else %}A Historic Location Near Istanbul's Most Vivid Routes{% endif %}</h1>
+</section>
+
+<section class="split-section image-story">
+  <div class="reveal-left">
+    <p class="eyebrow">{% if lang == 'tr' %}Konum{% else %}Location{% endif %}</p>
+    <h2>{% if lang == 'tr' %}Beyoğlu'ndan Şehre Açılan Zarif Bir Başlangıç{% else %}An Elegant Starting Point from Beyoglu into the City{% endif %}</h2>
+    <p>{% if lang == 'tr' %}İstiklal Caddesi, Taksim, Galata, Karaköy ve Tarihi Yarımada rotaları için Rumelihan Hotel, İstanbul'u yürüyerek ve kolay ulaşım bağlantılarıyla keşfetmek isteyen misafirler için idealdir.{% else %}For routes toward Istiklal Street, Taksim, Galata, Karakoy and the Historical Peninsula, Rumelihan Hotel is ideal for guests who want to discover Istanbul on foot and with easy transport links.{% endif %}</p>
+    <p>{% if lang == 'tr' %}{{ settings_obj.address_tr }}{% else %}{{ settings_obj.address_en }}{% endif %}</p>
+  </div>
+  <div class="layered-photos reveal-right">
+    <img src="{% static 'images/placeholders/beyoglu-istanbul.jpg' %}" alt="Beyoglu Istanbul">
+    <img src="{% static 'images/placeholders/hotel-exterior.jpg' %}" alt="Hotel exterior">
+    <img src="{% static 'images/placeholders/gallery-istanbul.jpg' %}" alt="Istanbul">
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-head reveal">
+    <p class="eyebrow">{% if lang == 'tr' %}Yakın Çevre{% else %}Nearby{% endif %}</p>
+    <h2>{% if lang == 'tr' %}Otele Yakın Öne Çıkan Noktalar{% else %}Highlights Close to the Hotel{% endif %}</h2>
+  </div>
+  <div class="attraction-card-grid stagger">
+    {% for place in nearby_attractions %}
+      <article class="attraction-card reveal">
+        <img src="{% if place.image %}{{ place.image.url }}{% else %}{% static 'images/placeholders/beyoglu-istanbul.jpg' %}{% endif %}" alt="{{ place.title_en }}">
+        <div>
+          <span>{% if lang == 'tr' %}{{ place.distance_tr }}{% else %}{{ place.distance_en }}{% endif %}</span>
+          <h3>{% if lang == 'tr' %}{{ place.title_tr }}{% else %}{{ place.title_en }}{% endif %}</h3>
+          <p>{% if lang == 'tr' %}{{ place.description_tr }}{% else %}{{ place.description_en }}{% endif %}</p>
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="location-layout">
+  <div class="reveal-left">
+    <h2>{% if lang == 'tr' %}Konum Avantajları{% else %}Location Advantages{% endif %}</h2>
+    <ul class="feature-list large">
+      <li>{% if lang == 'tr' %}İstiklal Caddesi'ne yürüyüş mesafesi{% else %}Walking distance to Istiklal Street{% endif %}</li>
+      <li>{% if lang == 'tr' %}Taksim ve metro bağlantılarına yakın{% else %}Close to Taksim and metro connections{% endif %}</li>
+      <li>{% if lang == 'tr' %}Galata ve Karaköy rotaları için pratik başlangıç{% else %}A practical starting point for Galata and Karakoy{% endif %}</li>
+      <li>{% if lang == 'tr' %}Tarihi Yarımada'ya kolay erişim{% else %}Easy access to the Historical Peninsula{% endif %}</li>
+    </ul>
+  </div>
+  <div class="map-box reveal-right">
+    {% if settings_obj.google_maps_embed %}
+      {{ settings_obj.google_maps_embed|safe }}
+    {% else %}
+      <span>{% if lang == 'tr' %}Harita alanı admin panelinden düzenlenebilir.{% else %}Map area can be edited from the admin panel.{% endif %}</span>
+    {% endif %}
+  </div>
+</section>
+
+<section class="cta-strip reveal">
+  <p class="eyebrow">Beyoglu</p>
+  <h2>{% if lang == 'tr' %}İstanbul'u Rumelihan'dan Keşfedin{% else %}Discover Istanbul from Rumelihan{% endif %}</h2>
+  <a class="btn gold" href="{% url 'hotel:contact' lang=lang %}">{% if lang == 'tr' %}Rezervasyon Sor{% else %}Ask Reservation{% endif %}</a>
+</section>
+{% endblock %}

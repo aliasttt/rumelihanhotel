@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<section class="page-hero ornate-page">
+  <p class="eyebrow">{% if lang == 'tr' %}İletişim{% else %}Contact{% endif %}</p>
+  <h1>{% if lang == 'tr' %}Rezervasyon Talebinizi Zarif Bir Başlangıçla Gönderin{% else %}Send Your Reservation Request with an Elegant Beginning{% endif %}</h1>
+</section>
+
+<section class="contact-layout">
+  <form class="reservation-form reveal-left" method="post">
+    {% csrf_token %}
+    {% if messages %}
+      {% for message in messages %}<div class="message">{{ message }}</div>{% endfor %}
+    {% endif %}
+    {{ form.non_field_errors }}
+    {% for field in form %}
+      <label>
+        <span>{{ field.label }}</span>
+        {{ field }}
+        {{ field.errors }}
+      </label>
+    {% endfor %}
+    <button class="btn gold" type="submit">{% if lang == 'tr' %}Talep Gönder{% else %}Send Request{% endif %}</button>
+  </form>
+  <aside class="contact-card reveal-right">
+    <img src="{% static 'images/placeholders/lobby-reception.jpg' %}" alt="Rumelihan reception">
+    <h2>{{ site_settings.hotel_name }}</h2>
+    <p>{% if lang == 'tr' %}{{ site_settings.address_tr }}{% else %}{{ site_settings.address_en }}{% endif %}</p>
+    {% if site_settings.phone %}<a href="tel:{{ site_settings.phone }}">{{ site_settings.phone }}</a>{% endif %}
+    {% if site_settings.email %}<a href="mailto:{{ site_settings.email }}">{{ site_settings.email }}</a>{% endif %}
+    {% if site_settings.whatsapp %}<a class="btn small outline" href="https://wa.me/{{ site_settings.whatsapp }}">{% if lang == 'tr' %}WhatsApp ile Yazın{% else %}Message on WhatsApp{% endif %}</a>{% endif %}
+  </aside>
+</section>
+
+<section class="section">
+  <div class="section-head reveal">
+    <p class="eyebrow">{% if lang == 'tr' %}Hızlı Bilgiler{% else %}Quick Notes{% endif %}</p>
+    <h2>{% if lang == 'tr' %}Rezervasyon Öncesi{% else %}Before Reservation{% endif %}</h2>
+  </div>
+  <div class="service-grid stagger">
+    <article class="service-card reveal"><span class="service-icon">24</span><h3>{% if lang == 'tr' %}Resepsiyon{% else %}Reception{% endif %}</h3><p>{% if lang == 'tr' %}Varış saatiniz ve özel talepleriniz için bizimle iletişime geçebilirsiniz.{% else %}You can contact us for arrival time and special requests.{% endif %}</p></article>
+    <article class="service-card reveal"><span class="service-icon">WA</span><h3>WhatsApp</h3><p>{% if lang == 'tr' %}Hızlı sorular için WhatsApp hattımızdan yazabilirsiniz.{% else %}For quick questions, you can write through our WhatsApp line.{% endif %}</p></article>
+    <article class="service-card reveal"><span class="service-icon">RH</span><h3>{% if lang == 'tr' %}Oda Önerisi{% else %}Room Advice{% endif %}</h3><p>{% if lang == 'tr' %}Kişi sayınıza ve seyahat planınıza göre oda önerisi yapabiliriz.{% else %}We can suggest a room based on guest count and travel plan.{% endif %}</p></article>
+  </div>
+</section>
+
+<section class="section faq-section">
+  <div class="section-head reveal">
+    <p class="eyebrow">FAQ</p>
+    <h2>{% if lang == 'tr' %}İletişim ve Rezervasyon Soruları{% else %}Contact and Reservation Questions{% endif %}</h2>
+  </div>
+  <div class="faq-list">
+    {% for faq in faqs %}
+      <details class="faq-item reveal">
+        <summary>{% if lang == 'tr' %}{{ faq.question_tr }}{% else %}{{ faq.question_en }}{% endif %}</summary>
+        <p>{% if lang == 'tr' %}{{ faq.answer_tr }}{% else %}{{ faq.answer_en }}{% endif %}</p>
+      </details>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="location-layout">
+  <div class="map-box reveal-left">
+    {% if site_settings.google_maps_embed %}
+      {{ site_settings.google_maps_embed|safe }}
+    {% else %}
+      <span>{% if lang == 'tr' %}Harita alanı admin panelinden düzenlenebilir.{% else %}Map area can be edited from the admin panel.{% endif %}</span>
+    {% endif %}
+  </div>
+  <div class="reveal-right">
+    <p class="eyebrow">Beyoglu</p>
+    <h2>{% if lang == 'tr' %}Otele Ulaşım{% else %}Reaching the Hotel{% endif %}</h2>
+    <p>{% if lang == 'tr' %}Adres, harita bağlantısı ve çevre bilgileri admin panelinden güncellenebilir. Misafirleriniz her zaman doğru bilgiye ulaşır.{% else %}Address, map link and area notes can be updated from the admin panel, keeping guest information accurate.{% endif %}</p>
+  </div>
+</section>
+{% endblock %}

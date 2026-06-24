@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<section class="page-hero ornate-page">
+  <p class="eyebrow">{% if lang == 'tr' %}Galeri{% else %}Gallery{% endif %}</p>
+  <h1>{% if lang == 'tr' %}Rumelihan'dan Işık, Doku ve İstanbul Kareleri{% else %}Light, Texture and Istanbul Scenes from Rumelihan{% endif %}</h1>
+</section>
+
+<section class="section intro reveal">
+  <div class="ornament draw-line"></div>
+  <h2>{% if lang == 'tr' %}Bir Butik Otelin Görsel Hikayesi{% else %}The Visual Story of a Boutique Hotel{% endif %}</h2>
+  <p>{% if lang == 'tr' %}Odalar, detaylar, tarihi atmosfer ve Beyoğlu çevresi; Rumelihan deneyimini oluşturan parçaları bir araya getirir.{% else %}Rooms, details, historical atmosphere and the surrounding Beyoglu area come together to form the Rumelihan experience.{% endif %}</p>
+</section>
+
+<section class="masonry gallery-rich">
+  {% for image in images %}
+    <figure class="gallery-item reveal" data-category="{{ image.category }}">
+      <img src="{% if image.image %}{{ image.image.url }}{% else %}{% static 'images/placeholders/gallery-hotel.jpg' %}{% endif %}" alt="{{ image.title_en }}">
+      <figcaption>{% if lang == 'tr' %}{{ image.title_tr }}{% else %}{{ image.title_en }}{% endif %}</figcaption>
+    </figure>
+  {% endfor %}
+</section>
+
+<section class="split-section image-story">
+  <div class="reveal-left">
+    <p class="eyebrow">{% if lang == 'tr' %}Detay{% else %}Detail{% endif %}</p>
+    <h2>{% if lang == 'tr' %}Her Karede Sakin ve Klasik Bir Duygu{% else %}A Calm, Classic Feeling in Every Frame{% endif %}</h2>
+    <p>{% if lang == 'tr' %}Koyu yeşil tonlar, altın çizgiler, sıcak ışık ve tarihi dokular; otelin görsel kimliğini sade ama etkileyici biçimde taşır.{% else %}Deep green tones, gold lines, warm light and historical textures carry the hotel's identity in a quiet but memorable way.{% endif %}</p>
+  </div>
+  <div class="layered-photos reveal-right">
+    <img src="{% static 'images/placeholders/bathroom.jpg' %}" alt="Bathroom">
+    <img src="{% static 'images/placeholders/breakfast-dining.jpg' %}" alt="Breakfast">
+    <img src="{% static 'images/placeholders/beyoglu-istanbul.jpg' %}" alt="Beyoglu">
+  </div>
+</section>
+
+<section class="cta-strip reveal">
+  <p class="eyebrow">Instagram</p>
+  <h2>{% if lang == 'tr' %}Rumelihan Atmosferini Daha Yakından Takip Edin{% else %}Follow the Rumelihan Atmosphere More Closely{% endif %}</h2>
+  {% if site_settings.instagram_url %}<a class="btn gold" href="{{ site_settings.instagram_url }}" target="_blank" rel="noreferrer">Instagram</a>{% endif %}
+</section>
+{% endblock %}
