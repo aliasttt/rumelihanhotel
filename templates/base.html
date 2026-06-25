@@ -49,7 +49,7 @@
         </div>
         <h2 id="campaign-title">{% if lang == 'tr' %}{{ discount_campaign.title_tr }}{% else %}{{ discount_campaign.title_en }}{% endif %}</h2>
         <p>{% if lang == 'tr' %}{{ discount_campaign.message_tr }}{% else %}{{ discount_campaign.message_en }}{% endif %}</p>
-        <a class="btn gold campaign-action" href="{% url 'hotel:contact' lang=lang %}">
+        <a class="btn gold campaign-action" href="{% url 'hotel:contact' lang=lang %}" data-campaign-action>
           {% if lang == 'tr' %}{{ discount_campaign.button_text_tr }}{% else %}{{ discount_campaign.button_text_en }}{% endif %}
         </a>
       </section>

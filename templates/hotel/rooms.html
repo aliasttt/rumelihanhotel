@@ -3,13 +3,13 @@
 {% block content %}
 <section class="page-hero ornate-page">
   <p class="eyebrow">{% if lang == 'tr' %}Odalar{% else %}Rooms{% endif %}</p>
-  <h1>{% if lang == 'tr' %}Åžehrin Ritmine YakÄ±n, Sakin ve Zarif Odalar{% else %}Calm and Elegant Rooms Close to the City's Rhythm{% endif %}</h1>
+  <h1>{% if lang == 'tr' %}Şehrin Ritmine Yakın, Sakin ve Zarif Odalar{% else %}Calm and Elegant Rooms Close to the City's Rhythm{% endif %}</h1>
 </section>
 
 <section class="section intro reveal">
   <div class="ornament draw-line"></div>
-  <h2>{% if lang == 'tr' %}Her Seyahat TarzÄ±na Uygun Butik Konfor{% else %}Boutique Comfort for Every Style of Travel{% endif %}</h2>
-  <p>{% if lang == 'tr' %}Tek misafirler, Ã§iftler, aileler ve Ã¼Ã§ kiÅŸilik konaklamalar iÃ§in hazÄ±rlanan odalarÄ±mÄ±zda klasik atmosfer, temiz Ã§izgiler ve pratik detaylar bir aradadÄ±r.{% else %}Prepared for solo guests, couples, families and triple stays, our rooms combine classic atmosphere, clean lines and practical details.{% endif %}</p>
+  <h2>{% if lang == 'tr' %}Her Seyahat Tarzına Uygun Butik Konfor{% else %}Boutique Comfort for Every Style of Travel{% endif %}</h2>
+  <p>{% if lang == 'tr' %}Tek misafirler, çiftler, aileler ve üç kişilik konaklamalar için hazırlanan odalarımızda klasik atmosfer, temiz çizgiler ve pratik detaylar bir aradadır.{% else %}Prepared for solo guests, couples, families and triple stays, our rooms combine classic atmosphere, clean lines and practical details.{% endif %}</p>
 </section>
 
 <section class="section">
@@ -23,7 +23,7 @@
           <h2>{% if lang == 'tr' %}{{ room.title_tr }}{% else %}{{ room.title_en }}{% endif %}</h2>
           <p>{% if lang == 'tr' %}{{ room.short_description_tr }}{% else %}{{ room.short_description_en }}{% endif %}</p>
           <div class="room-meta">
-            <span>{{ room.capacity }} {% if lang == 'tr' %}kiÅŸi{% else %}guests{% endif %}</span>
+            <span>{{ room.capacity }} {% if lang == 'tr' %}kişi{% else %}guests{% endif %}</span>
             <span>{% if lang == 'tr' %}{{ room.bed_type_tr }}{% else %}{{ room.bed_type_en }}{% endif %}</span>
             {% if room.price %}<span>{{ room.price }}</span>{% endif %}
           </div>
@@ -37,8 +37,8 @@
 <section class="split-section">
   <div class="reveal-left">
     <p class="eyebrow">{% if lang == 'tr' %}Oda Deneyimi{% else %}Room Experience{% endif %}</p>
-    <h2>{% if lang == 'tr' %}Sessiz Konfor, Tarihi SÄ±caklÄ±k{% else %}Quiet Comfort, Historical Warmth{% endif %}</h2>
-    <p>{% if lang == 'tr' %}OdalarÄ±mÄ±zda amaÃ§ gÃ¶steriÅŸli kalabalÄ±k deÄŸil; rahat uyku, temiz kullanÄ±m ve ÅŸehrin yorgunluÄŸunu alan sÄ±cak bir atmosferdir.{% else %}The aim is not loud excess, but restful sleep, clean use and a warm atmosphere that softens the city's pace.{% endif %}</p>
+    <h2>{% if lang == 'tr' %}Sessiz Konfor, Tarihi Sıcaklık{% else %}Quiet Comfort, Historical Warmth{% endif %}</h2>
+    <p>{% if lang == 'tr' %}Odalarımızda amaç gösterişli kalabalık değil; rahat uyku, temiz kullanım ve şehrin yorgunluğunu alan sıcak bir atmosferdir.{% else %}The aim is not loud excess, but restful sleep, clean use and a warm atmosphere that softens the city's pace.{% endif %}</p>
   </div>
   <div class="amenity-cloud reveal-right">
     {% for item in amenities|slice:":8" %}
@@ -64,7 +64,7 @@
 
 <section class="cta-strip reveal">
   <p class="eyebrow">Reservation</p>
-  <h2>{% if lang == 'tr' %}Size En Uygun OdayÄ± Birlikte SeÃ§elim{% else %}Let Us Help Choose the Best Room for You{% endif %}</h2>
+  <h2>{% if lang == 'tr' %}Size En Uygun Odayı Birlikte Seçelim{% else %}Let Us Help Choose the Best Room for You{% endif %}</h2>
   <a class="btn gold" href="{% url 'hotel:contact' lang=lang %}">{% if lang == 'tr' %}Rezervasyon Talebi{% else %}Reservation Request{% endif %}</a>
 </section>
 {% endblock %}

@@ -21,6 +21,13 @@ if (campaignPopup) {
       sessionStorage.setItem(storageKey, "1");
     });
   });
+  campaignPopup.querySelectorAll("[data-campaign-action]").forEach((link) => {
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      sessionStorage.setItem(storageKey, "1");
+      window.location.assign(link.href);
+    });
+  });
 }
 
 const revealObserver = new IntersectionObserver(
