@@ -9,6 +9,20 @@ if (navToggle && nav) {
   });
 }
 
+const campaignPopup = document.querySelector("[data-campaign-popup]");
+if (campaignPopup) {
+  const storageKey = "rumelihan-campaign-dismissed";
+  if (sessionStorage.getItem(storageKey) === "1") {
+    campaignPopup.hidden = true;
+  }
+  campaignPopup.querySelectorAll("[data-campaign-close]").forEach((button) => {
+    button.addEventListener("click", () => {
+      campaignPopup.hidden = true;
+      sessionStorage.setItem(storageKey, "1");
+    });
+  });
+}
+
 const revealObserver = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
@@ -100,11 +114,15 @@ document.querySelectorAll("[data-drag-scroll]").forEach((track) => {
   let isDown = false;
   let startX = 0;
   let scrollLeft = 0;
+  let userScrollTimeout = null;
+
+  track.dataset.autoScroll = "1";
 
   track.addEventListener("pointerdown", (event) => {
     isDown = true;
     startX = event.clientX;
     scrollLeft = track.scrollLeft;
+    track.dataset.userDragging = "1";
     track.classList.add("dragging");
     track.setPointerCapture(event.pointerId);
   });
@@ -119,8 +137,20 @@ document.querySelectorAll("[data-drag-scroll]").forEach((track) => {
     track.addEventListener(eventName, () => {
       isDown = false;
       track.classList.remove("dragging");
+      window.clearTimeout(userScrollTimeout);
+      userScrollTimeout = window.setTimeout(() => {
+        track.dataset.userDragging = "0";
+      }, 900);
     });
   });
+
+  track.addEventListener("wheel", () => {
+    track.dataset.userDragging = "1";
+    window.clearTimeout(userScrollTimeout);
+    userScrollTimeout = window.setTimeout(() => {
+      track.dataset.userDragging = "0";
+    }, 900);
+  }, { passive: true });
 });
 
 window.addEventListener("scroll", () => {
@@ -163,6 +193,15 @@ function updateScrollEffects() {
       text.style.opacity = `${clamp(progress * 1.4, 0.18, 1)}`;
       text.style.transform = `translateY(${(1 - progress) * 18}px)`;
     }
+  });
+
+  document.querySelectorAll(".scroll-gallery").forEach((section) => {
+    const track = section.querySelector("[data-drag-scroll]");
+    if (!track || track.dataset.userDragging === "1") return;
+    const rect = section.getBoundingClientRect();
+    const progress = clamp((viewport - rect.top) / (viewport + rect.height), 0, 1);
+    const overflow = Math.max(track.scrollWidth - track.clientWidth, 0);
+    track.scrollLeft = overflow * progress;
   });
 
 }

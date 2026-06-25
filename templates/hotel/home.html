@@ -27,7 +27,7 @@
     <div class="hero-content reveal text-reveal">
       <p class="eyebrow">Beyoglu, Istanbul</p>
       <h1>Rumelihan Hotel</h1>
-      <p>{% if lang == 'tr' %}Ä°stanbul'un kalbinde tarihi bir butik otel deneyimi.{% else %}A historic boutique hotel experience in the heart of Istanbul.{% endif %}</p>
+      <p>{% if lang == 'tr' %}İstanbul'un kalbinde tarihi bir butik otel deneyimi.{% else %}A historic boutique hotel experience in the heart of Istanbul.{% endif %}</p>
     </div>
   {% endfor %}
 </section>
@@ -35,8 +35,8 @@
 <section class="section video-feature-section">
   <div class="section-head reveal">
     <p class="eyebrow">{% if lang == 'tr' %}Otelin Ritmi{% else %}Hotel Rhythm{% endif %}</p>
-    <h2>{% if lang == 'tr' %}Rumelihan'Ä± Hareket Halinde KeÅŸfedin{% else %}Discover Rumelihan in Motion{% endif %}</h2>
-    <p>{% if lang == 'tr' %}Videolar sayfayÄ± yavaÅŸlatmamak iÃ§in yalnÄ±zca siz oynattÄ±ÄŸÄ±nÄ±zda yÃ¼klenir.{% else %}Videos load only when you play them, keeping the page fast.{% endif %}</p>
+    <h2>{% if lang == 'tr' %}Rumelihan'ı Hareket Halinde Keşfedin{% else %}Discover Rumelihan in Motion{% endif %}</h2>
+    <p>{% if lang == 'tr' %}Videolar sayfayı yavaşlatmamak için kontrollü şekilde yüklenir.{% else %}Videos load gracefully, keeping the page fast.{% endif %}</p>
   </div>
   <div class="video-carousel reveal" data-video-carousel>
     <button class="video-arrow video-arrow-prev" type="button" data-video-prev aria-label="Previous video"></button>
@@ -71,20 +71,20 @@
 
 <section class="section intro luxury-band reveal">
   <div class="ornament draw-line"></div>
-  <p class="eyebrow">{% if lang == 'tr' %}HoÅŸ Geldiniz{% else %}Welcome{% endif %}</p>
-  <h2>{% if lang == 'tr' %}BeyoÄŸlu'nun Tarihi Dokusunda Zarif Bir Konaklama{% else %}An Elegant Stay in the Historic Texture of Beyoglu{% endif %}</h2>
-  <p>{% if lang == 'tr' %}Rumelihan Hotel, klasik Ä°stanbul ruhunu sÄ±cak misafirperverlik, Ã¶zenli detaylar ve koyu yeÅŸil-altÄ±n bir atmosferle buluÅŸturan seÃ§kin bir ÅŸehir otelidir.{% else %}Rumelihan Hotel is a refined city hotel where classic Istanbul spirit meets warm hospitality, thoughtful details and a deep green-and-gold atmosphere.{% endif %}</p>
+  <p class="eyebrow">{% if lang == 'tr' %}Hoş Geldiniz{% else %}Welcome{% endif %}</p>
+  <h2>{% if lang == 'tr' %}Beyoğlu'nun Tarihi Dokusunda Zarif Bir Konaklama{% else %}An Elegant Stay in the Historic Texture of Beyoglu{% endif %}</h2>
+  <p>{% if lang == 'tr' %}Rumelihan Hotel, klasik İstanbul ruhunu sıcak misafirperverlik, özenli detaylar ve koyu yeşil-altın bir atmosferle buluşturan seçkin bir şehir otelidir.{% else %}Rumelihan Hotel is a refined city hotel where classic Istanbul spirit meets warm hospitality, thoughtful details and a deep green-and-gold atmosphere.{% endif %}</p>
   <div class="stat-row">
     <span><strong>4</strong>{% if lang == 'tr' %} oda tipi{% else %} room types{% endif %}</span>
     <span><strong>24/7</strong>{% if lang == 'tr' %} resepsiyon{% else %} reception{% endif %}</span>
-    <span><strong>5 dk</strong>{% if lang == 'tr' %} Ä°stiklal{% else %} to Istiklal{% endif %}</span>
+    <span><strong>5 dk</strong>{% if lang == 'tr' %} İstiklal{% else %} to Istiklal{% endif %}</span>
   </div>
 </section>
 
 <section class="split-section image-story">
   <div class="reveal-left">
     <p class="eyebrow">{% if lang == 'tr' %}Atmosfer{% else %}Atmosphere{% endif %}</p>
-    <h2>{% if lang == 'tr' %}SÄ±cak IÅŸÄ±klar, Tarihi Detaylar, Sakin Bir Ritim{% else %}Warm Light, Historic Details, a Calm Rhythm{% endif %}</h2>
+    <h2>{% if lang == 'tr' %}Sıcak Işıklar, Tarihi Detaylar, Sakin Bir Ritim{% else %}Warm Light, Historic Details, a Calm Rhythm{% endif %}</h2>
       <div><h3>{% if lang == 'tr' %}Tarihi doku, modern konforla buluşur.{% else %}Historic texture meets modern comfort.{% endif %}</h3></div>
     <a class="btn outline" href="{% url 'hotel:about' lang=lang %}">{% if lang == 'tr' %}Hikayeyi Oku{% else %}Read the Story{% endif %}</a>
   </div>
@@ -154,8 +154,8 @@
 
 <section class="scroll-gallery">
   <div class="section-head reveal">
-    <p class="eyebrow">{% if lang == 'tr' %}GÃ¶rsel Hikaye{% else %}Visual Story{% endif %}</p>
-    <h2>{% if lang == 'tr' %}Odadan SokaÄŸa Uzanan Bir Ä°stanbul Hissi{% else %}An Istanbul Feeling from Room to Street{% endif %}</h2>
+    <p class="eyebrow">{% if lang == 'tr' %}Görsel Hikaye{% else %}Visual Story{% endif %}</p>
+    <h2>{% if lang == 'tr' %}Odadan Sokağa Uzanan Bir İstanbul Hissi{% else %}An Istanbul Feeling from Room to Street{% endif %}</h2>
   </div>
   <div class="scroll-track" data-drag-scroll>
     {% for image in gallery_preview %}
@@ -200,7 +200,7 @@
 
 <section class="cta-strip reveal">
   <p class="eyebrow">Rumelihan Hotel</p>
-  <h2>{% if lang == 'tr' %}Ä°stanbul Seyahatinizi Zarif Bir BaÅŸlangÄ±Ã§la PlanlayÄ±n{% else %}Plan Your Istanbul Stay with an Elegant Beginning{% endif %}</h2>
-  <a class="btn gold" href="{% url 'hotel:contact' lang=lang %}">{% if lang == 'tr' %}Ä°letiÅŸime GeÃ§{% else %}Contact Us{% endif %}</a>
+  <h2>{% if lang == 'tr' %}İstanbul Seyahatinizi Zarif Bir Başlangıçla Planlayın{% else %}Plan Your Istanbul Stay with an Elegant Beginning{% endif %}</h2>
+  <a class="btn gold" href="{% url 'hotel:contact' lang=lang %}">{% if lang == 'tr' %}İletişime Geç{% else %}Contact Us{% endif %}</a>
 </section>
 {% endblock %}

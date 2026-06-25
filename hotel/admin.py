@@ -3,6 +3,7 @@ from django.utils.html import format_html
 
 from .models import (
     Amenity,
+    DiscountCampaign,
     FAQ,
     GalleryImage,
     HeroSlide,
@@ -129,6 +130,20 @@ class FAQAdmin(admin.ModelAdmin):
 class ShowcaseSectionAdmin(ImagePreviewMixin, admin.ModelAdmin):
     list_display = ("title_en", "active", "image_preview")
     search_fields = ("title_tr", "title_en", "subtitle_tr", "subtitle_en")
+
+
+@admin.register(DiscountCampaign)
+class DiscountCampaignAdmin(admin.ModelAdmin):
+    list_display = ("title_en", "active", "show_popup", "updated_at")
+    list_editable = ("active", "show_popup")
+    fieldsets = (
+        ("Visibility", {"fields": ("active", "show_popup")}),
+        ("Turkish Content", {"fields": ("title_tr", "message_tr", "badge_text_tr", "button_text_tr")}),
+        ("English Content", {"fields": ("title_en", "message_en", "badge_text_en", "button_text_en")}),
+    )
+
+    def has_add_permission(self, request):
+        return not DiscountCampaign.objects.exists()
 
 
 @admin.action(description="Mark selected requests as read")

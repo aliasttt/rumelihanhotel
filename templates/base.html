@@ -38,6 +38,24 @@
     {% block content %}{% endblock %}
   </main>
 
+  {% if discount_campaign.active and discount_campaign.show_popup %}
+    <div class="campaign-popup" data-campaign-popup role="dialog" aria-modal="true" aria-labelledby="campaign-title">
+      <div class="campaign-popup-backdrop" data-campaign-close></div>
+      <section class="campaign-popup-panel">
+        <button class="campaign-close" type="button" data-campaign-close aria-label="Close">×</button>
+        <p class="campaign-kicker">{% if lang == 'tr' %}Rumelihan Hotel Kampanyası{% else %}Rumelihan Hotel Campaign{% endif %}</p>
+        <div class="campaign-badge">
+          {% if lang == 'tr' %}{{ discount_campaign.badge_text_tr }}{% else %}{{ discount_campaign.badge_text_en }}{% endif %}
+        </div>
+        <h2 id="campaign-title">{% if lang == 'tr' %}{{ discount_campaign.title_tr }}{% else %}{{ discount_campaign.title_en }}{% endif %}</h2>
+        <p>{% if lang == 'tr' %}{{ discount_campaign.message_tr }}{% else %}{{ discount_campaign.message_en }}{% endif %}</p>
+        <a class="btn gold campaign-action" href="{% url 'hotel:contact' lang=lang %}">
+          {% if lang == 'tr' %}{{ discount_campaign.button_text_tr }}{% else %}{{ discount_campaign.button_text_en }}{% endif %}
+        </a>
+      </section>
+    </div>
+  {% endif %}
+
   <footer class="site-footer">
     <div>
       <p class="footer-brand">{{ site_settings.hotel_name }}</p>

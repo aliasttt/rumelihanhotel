@@ -1,4 +1,4 @@
-from .models import SiteSettings
+from .models import DiscountCampaign, SiteSettings
 
 
 DEFAULT_PHONE_DISPLAY = "+90 541 122 67 05"
@@ -36,8 +36,11 @@ def site_settings(request):
     address = settings.address_tr if lang == "tr" else settings.address_en
     default_address = DEFAULT_ADDRESS_TR if lang == "tr" else DEFAULT_ADDRESS_EN
 
+    campaign = DiscountCampaign.get_solo()
+
     return {
         "site_settings": settings,
+        "discount_campaign": campaign,
         "contact_phone_display": DEFAULT_PHONE_DISPLAY if is_old_phone(settings.phone) else settings.phone,
         "contact_phone_tel": DEFAULT_PHONE_TEL if is_old_phone(settings.phone) else settings.phone.replace(" ", ""),
         "contact_whatsapp": DEFAULT_WHATSAPP if is_old_whatsapp(settings.whatsapp) else settings.whatsapp,

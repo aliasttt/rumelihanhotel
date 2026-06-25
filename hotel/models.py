@@ -187,6 +187,32 @@ class ShowcaseSection(models.Model):
         return self.title_en
 
 
+class DiscountCampaign(models.Model):
+    title_tr = models.CharField(max_length=160, default="1 Aylık Özel İndirim")
+    title_en = models.CharField(max_length=160, default="One-Month Special Offer")
+    message_tr = models.TextField(default="Tüm odalarda 1 ay boyunca %20 indirim fırsatı.")
+    message_en = models.TextField(default="Enjoy 20% off all rooms for one month.")
+    badge_text_tr = models.CharField(max_length=80, default="%20 İndirim")
+    badge_text_en = models.CharField(max_length=80, default="20% Off")
+    button_text_tr = models.CharField(max_length=80, default="Rezervasyon Talebi")
+    button_text_en = models.CharField(max_length=80, default="Request Reservation")
+    active = models.BooleanField(default=True)
+    show_popup = models.BooleanField(default=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = "Discount Campaign"
+        verbose_name_plural = "Discount Campaign"
+
+    def __str__(self):
+        return self.title_en
+
+    @classmethod
+    def get_solo(cls):
+        obj, _ = cls.objects.get_or_create(pk=1)
+        return obj
+
+
 class ReservationRequest(models.Model):
     name = models.CharField(max_length=140)
     email = models.EmailField()
