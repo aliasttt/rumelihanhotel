@@ -3,10 +3,10 @@
 {% block content %}
 <section class="hero cinematic-hero" data-parallax-section>
   {% for slide in hero_slides|slice:":1" %}
-    <video class="hero-video" data-parallax-speed="0.18" autoplay muted loop playsinline preload="metadata" poster="{% if slide.image %}{{ slide.image.url }}{% else %}{% static 'images/placeholders/hero-boutique.jpg' %}{% endif %}">
-      <source src="{% static 'videos/rumelihan-hero.mp4' %}" type="video/mp4">
+    <video class="hero-video" data-parallax-speed="0.18" autoplay muted loop playsinline preload="metadata" poster="{% static 'videos/hotel-hero-poster.webp' %}">
+      <source src="{% static 'videos/hotel-hero.mp4' %}" type="video/mp4">
     </video>
-    <img class="hero-bg hero-fallback" src="{% if slide.image %}{{ slide.image.url }}{% else %}{% static 'images/placeholders/hero-boutique.jpg' %}{% endif %}" alt="{{ slide.title_en }}">
+    <img class="hero-bg hero-fallback" src="{% if slide.image %}{{ slide.image.url }}{% else %}{% static 'images/optimized/02.webp' %}{% endif %}" alt="{{ slide.title_en }}">
     <div class="hero-ornament" data-parallax-speed="-0.08">
       <img src="{% static 'images/brand/rumelihan-ornament-logo.png' %}" alt="Rumelihan Hotel logo">
     </div>
@@ -20,16 +20,47 @@
       </div>
     </div>
   {% empty %}
-    <video class="hero-video" data-parallax-speed="0.18" autoplay muted loop playsinline preload="metadata" poster="{% static 'images/placeholders/hero-boutique.jpg' %}">
-      <source src="{% static 'videos/rumelihan-hero.mp4' %}" type="video/mp4">
+    <video class="hero-video" data-parallax-speed="0.18" autoplay muted loop playsinline preload="metadata" poster="{% static 'videos/hotel-hero-poster.webp' %}">
+      <source src="{% static 'videos/hotel-hero.mp4' %}" type="video/mp4">
     </video>
-    <img class="hero-bg hero-fallback" src="{% static 'images/placeholders/hero-boutique.jpg' %}" alt="Rumelihan Hotel">
+    <img class="hero-bg hero-fallback" src="{% static 'images/optimized/02.webp' %}" alt="Rumelihan Hotel">
     <div class="hero-content reveal text-reveal">
       <p class="eyebrow">Beyoglu, Istanbul</p>
       <h1>Rumelihan Hotel</h1>
       <p>{% if lang == 'tr' %}İstanbul'un kalbinde tarihi bir butik otel deneyimi.{% else %}A historic boutique hotel experience in the heart of Istanbul.{% endif %}</p>
     </div>
   {% endfor %}
+</section>
+
+<section class="section video-feature-section">
+  <div class="section-head reveal">
+    <p class="eyebrow">{% if lang == 'tr' %}Otelin Ritmi{% else %}Hotel Rhythm{% endif %}</p>
+    <h2>{% if lang == 'tr' %}Rumelihan'ı Hareket Halinde Keşfedin{% else %}Discover Rumelihan in Motion{% endif %}</h2>
+    <p>{% if lang == 'tr' %}Videolar sayfayı yavaşlatmamak için yalnızca siz oynattığınızda yüklenir.{% else %}Videos load only when you play them, keeping the page fast.{% endif %}</p>
+  </div>
+  <div class="video-card-grid">
+    <article class="video-card reveal">
+      <video preload="none" playsinline poster="{% static 'videos/hotel-lobby-poster.webp' %}">
+        <source src="{% static 'videos/hotel-lobby.mp4' %}" type="video/mp4">
+      </video>
+      <button class="video-play" type="button" aria-label="Play video"></button>
+      <div><h3>{% if lang == 'tr' %}Lobi ve Karşılama{% else %}Lobby and Welcome{% endif %}</h3></div>
+    </article>
+    <article class="video-card reveal">
+      <video preload="none" playsinline poster="{% static 'videos/hotel-rooms-poster.webp' %}">
+        <source src="{% static 'videos/hotel-rooms.mp4' %}" type="video/mp4">
+      </video>
+      <button class="video-play" type="button" aria-label="Play video"></button>
+      <div><h3>{% if lang == 'tr' %}Odalar{% else %}Rooms{% endif %}</h3></div>
+    </article>
+    <article class="video-card reveal">
+      <video preload="none" playsinline poster="{% static 'videos/hotel-heritage-poster.webp' %}">
+        <source src="{% static 'videos/hotel-heritage.mp4' %}" type="video/mp4">
+      </video>
+      <button class="video-play" type="button" aria-label="Play video"></button>
+      <div><h3>{% if lang == 'tr' %}Tarihi Atmosfer{% else %}Historic Atmosphere{% endif %}</h3></div>
+    </article>
+  </div>
 </section>
 
 <section class="section intro luxury-band reveal">
@@ -52,9 +83,9 @@
     <a class="btn outline" href="{% url 'hotel:about' lang=lang %}">{% if lang == 'tr' %}Hikayeyi Oku{% else %}Read the Story{% endif %}</a>
   </div>
   <div class="layered-photos reveal-right">
-    <img src="{% static 'images/placeholders/lobby-reception.jpg' %}" alt="Lobby">
-    <img src="{% static 'images/placeholders/hallway-details.jpg' %}" alt="Historical hallway">
-    <img src="{% static 'images/placeholders/hotel-exterior.jpg' %}" alt="Hotel exterior">
+    <img src="{% static 'images/optimized/02.webp' %}" alt="Lobby" loading="lazy">
+    <img src="{% static 'images/optimized/03.webp' %}" alt="Historical hallway" loading="lazy">
+    <img src="{% static 'images/optimized/04.webp' %}" alt="Hotel exterior" loading="lazy">
   </div>
 </section>
 
@@ -68,7 +99,7 @@
     {% for room in featured_rooms %}
       <article class="room-card reveal">
         <a href="{% url 'hotel:room_detail' lang=lang slug=room.slug %}" class="image-frame mask-reveal">
-          <img src="{% if room.main_image %}{{ room.main_image.url }}{% else %}{% static 'images/placeholders/double-room.jpg' %}{% endif %}" alt="{{ room.title_en }}">
+          <img src="{% if room.main_image %}{{ room.main_image.url }}{% else %}{% static 'images/optimized/05.webp' %}{% endif %}" alt="{{ room.title_en }}" loading="lazy">
         </a>
         <div class="card-body">
           <h3>{% if lang == 'tr' %}{{ room.title_tr }}{% else %}{{ room.title_en }}{% endif %}</h3>
@@ -87,8 +118,8 @@
 <section class="center-showcase" data-showcase>
   <div class="showcase-frame">
     <div class="showcase-photo-stack">
-      <img src="{% if showcase and showcase.image %}{{ showcase.image.url }}{% else %}{% static 'images/placeholders/breakfast-dining.jpg' %}{% endif %}" alt="Rumelihan showcase">
-      <img src="{% static 'images/placeholders/beyoglu-istanbul.jpg' %}" alt="Beyoglu Istanbul">
+      <img src="{% if showcase and showcase.image %}{{ showcase.image.url }}{% else %}{% static 'images/optimized/10.webp' %}{% endif %}" alt="Rumelihan showcase" loading="lazy">
+      <img src="{% static 'images/optimized/11.webp' %}" alt="Beyoglu Istanbul" loading="lazy">
     </div>
     <div class="showcase-copy">
       <div class="ornament draw-line"></div>
@@ -123,7 +154,7 @@
   <div class="scroll-track">
     {% for image in gallery_preview %}
       <figure>
-        <img src="{% if image.image %}{{ image.image.url }}{% else %}{% static 'images/placeholders/gallery-hotel.jpg' %}{% endif %}" alt="{{ image.title_en }}">
+        <img src="{% if image.image %}{{ image.image.url }}{% else %}{% static 'images/optimized/12.webp' %}{% endif %}" alt="{{ image.title_en }}" loading="lazy">
         <figcaption>{% if lang == 'tr' %}{{ image.title_tr }}{% else %}{{ image.title_en }}{% endif %}</figcaption>
       </figure>
     {% endfor %}

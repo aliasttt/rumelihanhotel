@@ -15,7 +15,7 @@
 <section class="masonry gallery-rich">
   {% for image in images %}
     <figure class="gallery-item reveal" data-category="{{ image.category }}">
-      <img src="{% if image.image %}{{ image.image.url }}{% else %}{% static 'images/placeholders/gallery-hotel.jpg' %}{% endif %}" alt="{{ image.title_en }}">
+      <img src="{% if image.image %}{{ image.image.url }}{% else %}{% static 'images/optimized/12.webp' %}{% endif %}" alt="{{ image.title_en }}" loading="lazy">
       <figcaption>{% if lang == 'tr' %}{{ image.title_tr }}{% else %}{{ image.title_en }}{% endif %}</figcaption>
     </figure>
   {% endfor %}
@@ -28,9 +28,9 @@
     <p>{% if lang == 'tr' %}Koyu yeşil tonlar, altın çizgiler, sıcak ışık ve tarihi dokular; otelin görsel kimliğini sade ama etkileyici biçimde taşır.{% else %}Deep green tones, gold lines, warm light and historical textures carry the hotel's identity in a quiet but memorable way.{% endif %}</p>
   </div>
   <div class="layered-photos reveal-right">
-    <img src="{% static 'images/placeholders/bathroom.jpg' %}" alt="Bathroom">
-    <img src="{% static 'images/placeholders/breakfast-dining.jpg' %}" alt="Breakfast">
-    <img src="{% static 'images/placeholders/beyoglu-istanbul.jpg' %}" alt="Beyoglu">
+    <img src="{% static 'images/optimized/13.webp' %}" alt="Bathroom" loading="lazy">
+    <img src="{% static 'images/optimized/10.webp' %}" alt="Breakfast" loading="lazy">
+    <img src="{% static 'images/optimized/11.webp' %}" alt="Beyoglu" loading="lazy">
   </div>
 </section>
 

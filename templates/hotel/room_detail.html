@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
 <section class="room-hero-detail">
-  <img src="{% if room.main_image %}{{ room.main_image.url }}{% else %}{% static 'images/placeholders/double-room.jpg' %}{% endif %}" alt="{{ room.title_en }}">
+  <img src="{% if room.main_image %}{{ room.main_image.url }}{% else %}{% static 'images/optimized/05.webp' %}{% endif %}" alt="{{ room.title_en }}">
   <div>
     <p class="eyebrow">{% if lang == 'tr' %}Oda Detayı{% else %}Room Detail{% endif %}</p>
     <h1>{% if lang == 'tr' %}{{ room.title_tr }}{% else %}{{ room.title_en }}{% endif %}</h1>
@@ -12,14 +12,14 @@
 
 <section class="room-detail">
   <div class="room-gallery reveal-left">
-    <img class="main-room-image" src="{% if room.main_image %}{{ room.main_image.url }}{% else %}{% static 'images/placeholders/double-room.jpg' %}{% endif %}" alt="{{ room.title_en }}">
+    <img class="main-room-image" src="{% if room.main_image %}{{ room.main_image.url }}{% else %}{% static 'images/optimized/05.webp' %}{% endif %}" alt="{{ room.title_en }}" loading="lazy">
     <div class="thumb-grid">
       {% for item in room.gallery_images.all %}
-        <img src="{% if item.image %}{{ item.image.url }}{% else %}{% static 'images/placeholders/hallway-details.jpg' %}{% endif %}" alt="{% if lang == 'tr' %}{{ item.alt_text_tr }}{% else %}{{ item.alt_text_en }}{% endif %}">
+        <img src="{% if item.image %}{{ item.image.url }}{% else %}{% static 'images/optimized/03.webp' %}{% endif %}" alt="{% if lang == 'tr' %}{{ item.alt_text_tr }}{% else %}{{ item.alt_text_en }}{% endif %}" loading="lazy">
       {% empty %}
-        <img src="{% static 'images/placeholders/bathroom.jpg' %}" alt="Bathroom">
-        <img src="{% static 'images/placeholders/hallway-details.jpg' %}" alt="Interior detail">
-        <img src="{% static 'images/placeholders/breakfast-dining.jpg' %}" alt="Breakfast">
+        <img src="{% static 'images/optimized/13.webp' %}" alt="Bathroom" loading="lazy">
+        <img src="{% static 'images/optimized/03.webp' %}" alt="Interior detail" loading="lazy">
+        <img src="{% static 'images/optimized/10.webp' %}" alt="Breakfast" loading="lazy">
       {% endfor %}
     </div>
   </div>
@@ -57,7 +57,7 @@
     {% for other in related_rooms %}
       <article class="room-card reveal">
         <a class="image-frame" href="{% url 'hotel:room_detail' lang=lang slug=other.slug %}">
-          <img src="{% if other.main_image %}{{ other.main_image.url }}{% else %}{% static 'images/placeholders/double-room.jpg' %}{% endif %}" alt="{{ other.title_en }}">
+          <img src="{% if other.main_image %}{{ other.main_image.url }}{% else %}{% static 'images/optimized/05.webp' %}{% endif %}" alt="{{ other.title_en }}" loading="lazy">
         </a>
         <div class="card-body">
           <h3>{% if lang == 'tr' %}{{ other.title_tr }}{% else %}{{ other.title_en }}{% endif %}</h3>

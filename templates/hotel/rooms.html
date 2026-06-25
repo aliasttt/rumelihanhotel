@@ -17,7 +17,7 @@
     {% for room in rooms %}
       <article class="room-card reveal">
         <a href="{% url 'hotel:room_detail' lang=lang slug=room.slug %}" class="image-frame mask-reveal">
-          <img src="{% if room.main_image %}{{ room.main_image.url }}{% else %}{% static 'images/placeholders/double-room.jpg' %}{% endif %}" alt="{{ room.title_en }}">
+          <img src="{% if room.main_image %}{{ room.main_image.url }}{% else %}{% static 'images/optimized/05.webp' %}{% endif %}" alt="{{ room.title_en }}" loading="lazy">
         </a>
         <div class="card-body">
           <h2>{% if lang == 'tr' %}{{ room.title_tr }}{% else %}{{ room.title_en }}{% endif %}</h2>
@@ -31,6 +31,17 @@
         </div>
       </article>
     {% endfor %}
+  </div>
+</section>
+
+<section class="section video-band reveal">
+  <video preload="none" playsinline poster="{% static 'videos/hotel-rooms-poster.webp' %}">
+    <source src="{% static 'videos/hotel-rooms.mp4' %}" type="video/mp4">
+  </video>
+  <button class="video-play" type="button" aria-label="Play video"></button>
+  <div>
+    <p class="eyebrow">{% if lang == 'tr' %}Odalar{% else %}Rooms{% endif %}</p>
+    <h2>{% if lang == 'tr' %}Oda atmosferini oynatın{% else %}Play the room atmosphere{% endif %}</h2>
   </div>
 </section>
 

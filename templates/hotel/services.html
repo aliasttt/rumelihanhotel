@@ -13,9 +13,20 @@
     <p>{% if lang == 'tr' %}Rumelihan Hotel'de servis, konaklamayı kolaylaştıran küçük ama önemli detaylardan oluşur: temiz odalar, güçlü bağlantı, yerel öneriler ve gerektiğinde hızlı destek.{% else %}At Rumelihan Hotel, service is made of small but meaningful details: clean rooms, strong connection, local guidance and quick assistance when needed.{% endif %}</p>
   </div>
   <div class="layered-photos reveal-right">
-    <img src="{% static 'images/placeholders/breakfast-dining.jpg' %}" alt="Breakfast">
-    <img src="{% static 'images/placeholders/lobby-reception.jpg' %}" alt="Reception">
-    <img src="{% static 'images/placeholders/family-room.jpg' %}" alt="Family room">
+    <img src="{% static 'images/optimized/10.webp' %}" alt="Breakfast" loading="lazy">
+    <img src="{% static 'images/optimized/02.webp' %}" alt="Reception" loading="lazy">
+    <img src="{% static 'images/optimized/06.webp' %}" alt="Family room" loading="lazy">
+  </div>
+</section>
+
+<section class="section video-band reveal">
+  <video preload="none" playsinline poster="{% static 'videos/hotel-lobby-poster.webp' %}">
+    <source src="{% static 'videos/hotel-lobby.mp4' %}" type="video/mp4">
+  </video>
+  <button class="video-play" type="button" aria-label="Play video"></button>
+  <div>
+    <p class="eyebrow">{% if lang == 'tr' %}Karşılama{% else %}Welcome{% endif %}</p>
+    <h2>{% if lang == 'tr' %}Servis ritmini izleyin{% else %}Watch the service rhythm{% endif %}</h2>
   </div>
 </section>
 

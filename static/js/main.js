@@ -23,6 +23,28 @@ const revealObserver = new IntersectionObserver(
 
 document.querySelectorAll(".reveal, .reveal-left, .reveal-right").forEach((item) => revealObserver.observe(item));
 
+document.querySelectorAll(".video-play").forEach((button) => {
+  button.addEventListener("click", () => {
+    const wrapper = button.closest(".video-card, .video-band");
+    const video = wrapper?.querySelector("video");
+    if (!wrapper || !video) return;
+
+    document.querySelectorAll(".video-card.playing video, .video-band.playing video").forEach((item) => {
+      if (item !== video) {
+        item.pause();
+        item.closest(".video-card, .video-band")?.classList.remove("playing");
+      }
+    });
+
+    video.controls = true;
+    video.muted = false;
+    video.play().then(() => wrapper.classList.add("playing")).catch(() => {
+      video.muted = true;
+      video.play().then(() => wrapper.classList.add("playing")).catch(() => {});
+    });
+  });
+});
+
 window.addEventListener("scroll", () => {
   if (header) header.classList.toggle("scrolled", window.scrollY > 18);
   updateScrollEffects();

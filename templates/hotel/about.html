@@ -8,9 +8,9 @@
 
 <section class="split-section image-story">
   <div class="layered-photos reveal-left">
-    <img src="{% static 'images/placeholders/hotel-exterior.jpg' %}" alt="Hotel exterior">
-    <img src="{% static 'images/placeholders/lobby-reception.jpg' %}" alt="Reception">
-    <img src="{% static 'images/placeholders/hallway-details.jpg' %}" alt="Historical details">
+    <img src="{% static 'images/optimized/04.webp' %}" alt="Hotel exterior" loading="lazy">
+    <img src="{% static 'images/optimized/02.webp' %}" alt="Reception" loading="lazy">
+    <img src="{% static 'images/optimized/03.webp' %}" alt="Historical details" loading="lazy">
   </div>
   <div class="reveal-right">
     <p class="eyebrow">{% if lang == 'tr' %}Hikaye{% else %}Story{% endif %}</p>
@@ -22,6 +22,17 @@
       <p>Rumelihan Hotel welcomes guests with a boutique approach inspired by Beyoglu's layered past, bringing traditional lines together with modern comfort.</p>
       <p>Close to Istiklal Street, shaped by classic decoration and warm service, it offers a refined atmosphere for guests who want both discovery and rest.</p>
     {% endif %}
+  </div>
+</section>
+
+<section class="section video-band reveal">
+  <video preload="none" playsinline poster="{% static 'videos/hotel-heritage-poster.webp' %}">
+    <source src="{% static 'videos/hotel-heritage.mp4' %}" type="video/mp4">
+  </video>
+  <button class="video-play" type="button" aria-label="Play video"></button>
+  <div>
+    <p class="eyebrow">{% if lang == 'tr' %}Atmosfer{% else %}Atmosphere{% endif %}</p>
+    <h2>{% if lang == 'tr' %}Tarihi dokuyu hareket halinde görün{% else %}See the heritage mood in motion{% endif %}</h2>
   </div>
 </section>
 

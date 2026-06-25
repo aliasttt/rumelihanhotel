@@ -23,7 +23,7 @@
     <button class="btn gold" type="submit">{% if lang == 'tr' %}Talep Gönder{% else %}Send Request{% endif %}</button>
   </form>
   <aside class="contact-card reveal-right">
-    <img src="{% static 'images/placeholders/lobby-reception.jpg' %}" alt="Rumelihan reception">
+    <img src="{% static 'images/optimized/02.webp' %}" alt="Rumelihan reception" loading="lazy">
     <h2>{{ site_settings.hotel_name }}</h2>
     <p>{{ contact_address }}</p>
     <a href="tel:{{ contact_phone_tel }}">{{ contact_phone_display }}</a>

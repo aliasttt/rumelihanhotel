@@ -382,6 +382,116 @@ h3 { font-size: 1.75rem; }
     repeating-linear-gradient(45deg, #082a24, #082a24 12px, #0d372f 12px, #0d372f 24px);
 }
 
+.video-feature-section {
+  padding-top: clamp(3rem, 6vw, 5rem);
+}
+
+.video-card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.video-card,
+.video-band {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(212, 175, 55, 0.34);
+  background: rgba(3, 27, 23, 0.72);
+  box-shadow: var(--shadow);
+}
+
+.video-card {
+  aspect-ratio: 9 / 13;
+}
+
+.video-card::before,
+.video-band::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(3, 27, 23, 0.16), rgba(3, 27, 23, 0.78)),
+    radial-gradient(circle at 50% 45%, rgba(212, 175, 55, 0.14), transparent 18rem);
+}
+
+.video-card video,
+.video-band video {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  filter: saturate(0.88) contrast(1.05) brightness(0.86);
+}
+
+.video-card > div,
+.video-band > div {
+  position: absolute;
+  left: 1rem;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 2;
+}
+
+.video-card h3,
+.video-band h2 {
+  margin: 0;
+  text-wrap: balance;
+}
+
+.video-play {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 3;
+  width: 64px;
+  height: 64px;
+  border: 1px solid rgba(212, 175, 55, 0.75);
+  border-radius: 50%;
+  background: rgba(3, 27, 23, 0.72);
+  color: var(--gold);
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  box-shadow: 0 0 44px rgba(212, 175, 55, 0.18);
+  transition: transform 0.22s ease, background 0.22s ease, opacity 0.22s ease;
+}
+
+.video-play::before {
+  content: "";
+  position: absolute;
+  left: 25px;
+  top: 20px;
+  border-left: 18px solid currentColor;
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+}
+
+.video-play:hover {
+  transform: translate(-50%, -50%) scale(1.06);
+  background: rgba(6, 43, 36, 0.94);
+}
+
+.video-card.playing .video-play,
+.video-band.playing .video-play {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.video-band {
+  min-height: min(72vh, 620px);
+  display: grid;
+  padding: 0;
+}
+
+.video-band > div {
+  width: min(680px, calc(100% - 2rem));
+  left: clamp(1rem, 5vw, 4rem);
+  right: auto;
+  bottom: clamp(1.2rem, 5vw, 4rem);
+}
+
 .card-body, .service-card, .room-panel, .contact-card {
   padding: 1.35rem;
 }
@@ -1061,7 +1171,7 @@ h3 { font-size: 1.75rem; }
   }
   .site-nav.open { display: flex; }
   .site-nav a { padding: 0.65rem 0; }
-  .card-grid, .service-grid, .split-section, .room-detail, .location-layout, .contact-layout {
+  .card-grid, .service-grid, .split-section, .room-detail, .location-layout, .contact-layout, .video-card-grid {
     grid-template-columns: 1fr;
   }
   .testimonial-grid, .timeline-grid, .attraction-card-grid {
@@ -1099,6 +1209,12 @@ h3 { font-size: 1.75rem; }
   }
   .showcase-photo-stack {
     opacity: 0.22;
+  }
+  .video-card {
+    aspect-ratio: 16 / 11;
+  }
+  .video-band {
+    min-height: 420px;
   }
   .hero {
     min-height: auto;
@@ -1209,6 +1325,24 @@ h3 { font-size: 1.75rem; }
     height: 31%;
     left: 5%;
     top: 0;
+  }
+  .video-card {
+    aspect-ratio: 4 / 5;
+  }
+  .video-card > div,
+  .video-band > div {
+    left: 0.9rem;
+    right: 0.9rem;
+    bottom: 0.9rem;
+    width: auto;
+  }
+  .video-play {
+    width: 58px;
+    height: 58px;
+  }
+  .video-play::before {
+    left: 23px;
+    top: 18px;
   }
   .mini-gallery, .thumb-grid { grid-template-columns: repeat(2, 1fr); }
 }
