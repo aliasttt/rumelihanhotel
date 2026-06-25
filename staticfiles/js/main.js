@@ -45,6 +45,84 @@ document.querySelectorAll(".video-play").forEach((button) => {
   });
 });
 
+document.querySelectorAll("[data-video-carousel]").forEach((carousel) => {
+  const slides = Array.from(carousel.querySelectorAll("[data-video-slide]"));
+  const dots = Array.from(carousel.querySelectorAll("[data-video-dot]"));
+  const prev = carousel.querySelector("[data-video-prev]");
+  const next = carousel.querySelector("[data-video-next]");
+  let activeIndex = 0;
+
+  function showSlide(index) {
+    if (!slides.length) return;
+    activeIndex = (index + slides.length) % slides.length;
+
+    slides.forEach((slide, slideIndex) => {
+      const video = slide.querySelector("video");
+      const isActive = slideIndex === activeIndex;
+      slide.classList.toggle("active", isActive);
+      if (!video) return;
+      if (isActive) {
+        video.currentTime = 0;
+        video.muted = true;
+        video.play().catch(() => {});
+      } else {
+        video.pause();
+      }
+    });
+
+    dots.forEach((dot, dotIndex) => dot.classList.toggle("active", dotIndex === activeIndex));
+  }
+
+  slides.forEach((slide, index) => {
+    const video = slide.querySelector("video");
+    if (video) video.addEventListener("ended", () => showSlide(index + 1));
+  });
+
+  prev?.addEventListener("click", () => showSlide(activeIndex - 1));
+  next?.addEventListener("click", () => showSlide(activeIndex + 1));
+  dots.forEach((dot, index) => dot.addEventListener("click", () => showSlide(index)));
+
+  const carouselObserver = new IntersectionObserver(
+    ([entry]) => {
+      const video = slides[activeIndex]?.querySelector("video");
+      if (!video) return;
+      if (entry.isIntersecting) video.play().catch(() => {});
+      else video.pause();
+    },
+    { threshold: 0.45 }
+  );
+
+  carouselObserver.observe(carousel);
+  showSlide(0);
+});
+
+document.querySelectorAll("[data-drag-scroll]").forEach((track) => {
+  let isDown = false;
+  let startX = 0;
+  let scrollLeft = 0;
+
+  track.addEventListener("pointerdown", (event) => {
+    isDown = true;
+    startX = event.clientX;
+    scrollLeft = track.scrollLeft;
+    track.classList.add("dragging");
+    track.setPointerCapture(event.pointerId);
+  });
+
+  track.addEventListener("pointermove", (event) => {
+    if (!isDown) return;
+    event.preventDefault();
+    track.scrollLeft = scrollLeft - (event.clientX - startX);
+  });
+
+  ["pointerup", "pointercancel", "pointerleave"].forEach((eventName) => {
+    track.addEventListener(eventName, () => {
+      isDown = false;
+      track.classList.remove("dragging");
+    });
+  });
+});
+
 window.addEventListener("scroll", () => {
   if (header) header.classList.toggle("scrolled", window.scrollY > 18);
   updateScrollEffects();
@@ -87,14 +165,6 @@ function updateScrollEffects() {
     }
   });
 
-  document.querySelectorAll("[data-horizontal-scroll]").forEach((section) => {
-    const rect = section.getBoundingClientRect();
-    const track = section.querySelector(".scroll-track");
-    if (!track) return;
-    const overflow = Math.max(track.scrollWidth - window.innerWidth, 0);
-    const progress = clamp((viewport - rect.top) / (viewport + rect.height), 0, 1);
-    track.style.setProperty("--scroll-x", `${-overflow * progress}px`);
-  });
 }
 
 updateScrollEffects();

@@ -38,28 +38,34 @@
     <h2>{% if lang == 'tr' %}Rumelihan'ı Hareket Halinde Keşfedin{% else %}Discover Rumelihan in Motion{% endif %}</h2>
     <p>{% if lang == 'tr' %}Videolar sayfayı yavaşlatmamak için yalnızca siz oynattığınızda yüklenir.{% else %}Videos load only when you play them, keeping the page fast.{% endif %}</p>
   </div>
-  <div class="video-card-grid">
-    <article class="video-card reveal">
-      <video preload="none" playsinline poster="{% static 'videos/hotel-lobby-poster.webp' %}">
+  <div class="video-carousel reveal" data-video-carousel>
+    <button class="video-arrow video-arrow-prev" type="button" data-video-prev aria-label="Previous video"></button>
+    <div class="video-carousel-window">
+    <article class="video-slide active" data-video-slide>
+      <video muted playsinline preload="metadata" poster="{% static 'videos/hotel-lobby-poster.webp' %}">
         <source src="{% static 'videos/hotel-lobby.mp4' %}" type="video/mp4">
       </video>
-      <button class="video-play" type="button" aria-label="Play video"></button>
       <div><h3>{% if lang == 'tr' %}Lobi ve Karşılama{% else %}Lobby and Welcome{% endif %}</h3></div>
     </article>
-    <article class="video-card reveal">
-      <video preload="none" playsinline poster="{% static 'videos/hotel-rooms-poster.webp' %}">
+    <article class="video-slide" data-video-slide>
+      <video muted playsinline preload="metadata" poster="{% static 'videos/hotel-rooms-poster.webp' %}">
         <source src="{% static 'videos/hotel-rooms.mp4' %}" type="video/mp4">
       </video>
-      <button class="video-play" type="button" aria-label="Play video"></button>
       <div><h3>{% if lang == 'tr' %}Odalar{% else %}Rooms{% endif %}</h3></div>
     </article>
-    <article class="video-card reveal">
-      <video preload="none" playsinline poster="{% static 'videos/hotel-heritage-poster.webp' %}">
+    <article class="video-slide" data-video-slide>
+      <video muted playsinline preload="metadata" poster="{% static 'videos/hotel-heritage-poster.webp' %}">
         <source src="{% static 'videos/hotel-heritage.mp4' %}" type="video/mp4">
       </video>
-      <button class="video-play" type="button" aria-label="Play video"></button>
       <div><h3>{% if lang == 'tr' %}Tarihi Atmosfer{% else %}Historic Atmosphere{% endif %}</h3></div>
     </article>
+    </div>
+    <button class="video-arrow video-arrow-next" type="button" data-video-next aria-label="Next video"></button>
+    <div class="video-dots" aria-label="Video slides">
+      <button class="active" type="button" data-video-dot aria-label="Video 1"></button>
+      <button type="button" data-video-dot aria-label="Video 2"></button>
+      <button type="button" data-video-dot aria-label="Video 3"></button>
+    </div>
   </div>
 </section>
 
@@ -146,12 +152,12 @@
   </div>
 </section>
 
-<section class="scroll-gallery" data-horizontal-scroll>
+<section class="scroll-gallery">
   <div class="section-head reveal">
     <p class="eyebrow">{% if lang == 'tr' %}Görsel Hikaye{% else %}Visual Story{% endif %}</p>
     <h2>{% if lang == 'tr' %}Odadan Sokağa Uzanan Bir İstanbul Hissi{% else %}An Istanbul Feeling from Room to Street{% endif %}</h2>
   </div>
-  <div class="scroll-track">
+  <div class="scroll-track" data-drag-scroll>
     {% for image in gallery_preview %}
       <figure>
         <img src="{% static image.path %}" alt="{{ image.title_en }}" loading="lazy">
