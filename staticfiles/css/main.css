@@ -519,7 +519,7 @@ h3 { font-size: 1.75rem; }
   position: relative;
   width: min(980px, 100%);
   margin: 0 auto;
-  padding: 0 clamp(2.6rem, 5vw, 4.5rem) 3.2rem;
+  padding: 0;
 }
 
 .video-carousel-window {
@@ -569,8 +569,8 @@ h3 { font-size: 1.75rem; }
 .video-slide > div {
   position: absolute;
   left: clamp(1rem, 4vw, 2rem);
-  right: clamp(1rem, 4vw, 2rem);
-  bottom: clamp(1rem, 4vw, 2rem);
+  right: clamp(4.8rem, 9vw, 7rem);
+  bottom: clamp(1.15rem, 4vw, 2.2rem);
   z-index: 2;
 }
 
@@ -578,15 +578,17 @@ h3 { font-size: 1.75rem; }
   width: fit-content;
   max-width: 100%;
   margin: 0;
-  padding: 0.42rem 0.68rem;
+  padding: 0.48rem 0.72rem;
   border: 1px solid rgba(212, 175, 55, 0.34);
   background: rgba(3, 27, 23, 0.58);
   backdrop-filter: blur(10px);
+  font-size: clamp(1.45rem, 3.2vw, 2.45rem);
+  line-height: 1.04;
 }
 
 .video-arrow {
   position: absolute;
-  top: calc(50% - 1.6rem);
+  top: 50%;
   z-index: 4;
   width: 48px;
   height: 48px;
@@ -595,6 +597,7 @@ h3 { font-size: 1.75rem; }
   background: rgba(3, 27, 23, 0.78);
   color: var(--gold);
   cursor: pointer;
+  transform: translateY(-50%);
   transition: transform 0.22s ease, background 0.22s ease;
 }
 
@@ -607,7 +610,7 @@ h3 { font-size: 1.75rem; }
 }
 
 .video-arrow-prev {
-  left: 0;
+  left: clamp(0.65rem, 2vw, 1.2rem);
 }
 
 .video-arrow-prev::before {
@@ -615,7 +618,7 @@ h3 { font-size: 1.75rem; }
 }
 
 .video-arrow-next {
-  right: 0;
+  right: clamp(0.65rem, 2vw, 1.2rem);
 }
 
 .video-arrow-next::before {
@@ -623,14 +626,14 @@ h3 { font-size: 1.75rem; }
 }
 
 .video-arrow:hover {
-  transform: translateY(-2px);
+  transform: translateY(-50%) scale(1.05);
   background: rgba(6, 43, 36, 0.96);
 }
 
 .video-dots {
   position: absolute;
   left: 50%;
-  bottom: 0.9rem;
+  bottom: clamp(1rem, 3vw, 1.6rem);
   z-index: 5;
   display: flex;
   gap: 0.55rem;
@@ -1399,22 +1402,22 @@ h3 { font-size: 1.75rem; }
   }
   .video-carousel {
     width: 100%;
-    padding: 0 0 3.1rem;
+    padding: 0;
   }
   .video-carousel-window {
     min-height: min(64vh, 560px);
   }
   .video-arrow {
-    top: auto;
-    bottom: 0.55rem;
+    top: 50%;
+    bottom: auto;
     width: 42px;
     height: 42px;
   }
   .video-arrow-prev {
-    left: calc(50% - 112px);
+    left: 0.65rem;
   }
   .video-arrow-next {
-    right: calc(50% - 112px);
+    right: 0.65rem;
   }
   .hero {
     min-height: auto;
