@@ -28,7 +28,7 @@
   <div class="attraction-card-grid stagger">
     {% for place in nearby_attractions %}
       <article class="attraction-card reveal">
-        <img src="{% if place.image %}{{ place.image.url }}{% else %}{% static 'images/optimized/11.webp' %}{% endif %}" alt="{{ place.title_en }}" loading="lazy">
+        <img src="{% static place.optimized_image %}" alt="{{ place.title_en }}" loading="lazy">
         <div>
           <span>{% if lang == 'tr' %}{{ place.distance_tr }}{% else %}{{ place.distance_en }}{% endif %}</span>
           <h3>{% if lang == 'tr' %}{{ place.title_tr }}{% else %}{{ place.title_en }}{% endif %}</h3>

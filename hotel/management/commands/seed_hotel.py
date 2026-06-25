@@ -17,11 +17,34 @@ from hotel.models import (
     Testimonial,
 )
 
+DEFAULT_IMAGE_MAP = {
+    "rumelihan-hero.jpg": "02.webp",
+    "single-room.jpg": "05.webp",
+    "double-room.jpg": "06.webp",
+    "family-room.jpg": "07.webp",
+    "vip-triple-room.jpg": "15.webp",
+    "gallery-detail.jpg": "03.webp",
+    "gallery-hotel.jpg": "04.webp",
+    "gallery-beyoglu.jpg": "11.webp",
+    "gallery-room.jpg": "12.webp",
+    "gallery-istanbul.jpg": "14.webp",
+    "gallery-calm.jpg": "17.webp",
+}
+
 
 class Command(BaseCommand):
     help = "Create default Rumelihan Hotel content."
 
     def create_seed_image(self, filename, label, size=(1400, 950)):
+        optimized_name = DEFAULT_IMAGE_MAP.get(filename)
+        if optimized_name:
+            source = settings.BASE_DIR / "static" / "images" / "optimized" / optimized_name
+            target = settings.MEDIA_ROOT / "optimized" / optimized_name
+            if source.exists():
+                target.parent.mkdir(parents=True, exist_ok=True)
+                copyfile(source, target)
+                return f"optimized/{optimized_name}"
+
         path = settings.MEDIA_ROOT / "seed" / filename
         path.parent.mkdir(parents=True, exist_ok=True)
         static_source = settings.BASE_DIR / "static" / "images" / "placeholders" / filename

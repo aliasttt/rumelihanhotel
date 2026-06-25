@@ -139,9 +139,9 @@ a { color: inherit; text-decoration: none; }
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 74% 34%, rgba(212, 175, 55, 0.12), transparent 26rem),
-    linear-gradient(90deg, rgba(3, 27, 23, 0.95), rgba(6, 43, 36, 0.76) 48%, rgba(3, 27, 23, 0.62)),
-    linear-gradient(0deg, rgba(3, 27, 23, 0.92), rgba(3, 27, 23, 0.28));
+    radial-gradient(circle at 74% 34%, rgba(212, 175, 55, 0.11), transparent 25rem),
+    linear-gradient(90deg, rgba(3, 27, 23, 0.78), rgba(6, 43, 36, 0.5) 48%, rgba(3, 27, 23, 0.34)),
+    linear-gradient(0deg, rgba(3, 27, 23, 0.72), rgba(3, 27, 23, 0.12));
   z-index: 1;
 }
 
@@ -155,8 +155,8 @@ a { color: inherit; text-decoration: none; }
 }
 
 .hero-video {
-  opacity: 0.74;
-  filter: saturate(0.78) contrast(1.08) brightness(0.82);
+  opacity: 0.94;
+  filter: saturate(0.96) contrast(1.05) brightness(0.98);
 }
 
 .hero-bg {
@@ -388,8 +388,9 @@ h3 { font-size: 1.75rem; }
 
 .video-card-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1rem;
+  grid-template-columns: 1.08fr 0.96fr 0.96fr;
+  gap: clamp(0.85rem, 1.8vw, 1.35rem);
+  align-items: stretch;
 }
 
 .video-card,
@@ -397,12 +398,25 @@ h3 { font-size: 1.75rem; }
   position: relative;
   overflow: hidden;
   border: 1px solid rgba(212, 175, 55, 0.34);
+  border-radius: 8px;
   background: rgba(3, 27, 23, 0.72);
   box-shadow: var(--shadow);
 }
 
 .video-card {
-  aspect-ratio: 9 / 13;
+  aspect-ratio: 4 / 5;
+  isolation: isolate;
+  transition: transform 0.24s ease, border-color 0.24s ease, box-shadow 0.24s ease;
+}
+
+.video-card:nth-child(1) {
+  aspect-ratio: 4 / 4.45;
+}
+
+.video-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(212, 175, 55, 0.62);
+  box-shadow: 0 34px 90px rgba(0, 0, 0, 0.34);
 }
 
 .video-card::before,
@@ -413,8 +427,8 @@ h3 { font-size: 1.75rem; }
   z-index: 1;
   pointer-events: none;
   background:
-    linear-gradient(180deg, rgba(3, 27, 23, 0.16), rgba(3, 27, 23, 0.78)),
-    radial-gradient(circle at 50% 45%, rgba(212, 175, 55, 0.14), transparent 18rem);
+    linear-gradient(180deg, rgba(3, 27, 23, 0.04), rgba(3, 27, 23, 0.58)),
+    radial-gradient(circle at 50% 48%, rgba(212, 175, 55, 0.12), transparent 18rem);
 }
 
 .video-card video,
@@ -423,7 +437,8 @@ h3 { font-size: 1.75rem; }
   height: 100%;
   display: block;
   object-fit: cover;
-  filter: saturate(0.88) contrast(1.05) brightness(0.86);
+  filter: saturate(0.98) contrast(1.04) brightness(0.96);
+  transform: scale(1.01);
 }
 
 .video-card > div,
@@ -441,6 +456,14 @@ h3 { font-size: 1.75rem; }
   text-wrap: balance;
 }
 
+.video-card h3 {
+  display: inline;
+  padding: 0.28rem 0.48rem;
+  background: rgba(3, 27, 23, 0.58);
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
 .video-play {
   position: absolute;
   left: 50%;
@@ -450,7 +473,7 @@ h3 { font-size: 1.75rem; }
   height: 64px;
   border: 1px solid rgba(212, 175, 55, 0.75);
   border-radius: 50%;
-  background: rgba(3, 27, 23, 0.72);
+  background: rgba(3, 27, 23, 0.62);
   color: var(--gold);
   transform: translate(-50%, -50%);
   cursor: pointer;
@@ -1210,8 +1233,18 @@ h3 { font-size: 1.75rem; }
   .showcase-photo-stack {
     opacity: 0.22;
   }
+  .video-card-grid {
+    display: flex;
+    gap: 0.9rem;
+    overflow-x: auto;
+    padding: 0 0.15rem 0.85rem;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: thin;
+  }
   .video-card {
-    aspect-ratio: 16 / 11;
+    flex: 0 0 min(76vw, 360px);
+    aspect-ratio: 4 / 5.2;
+    scroll-snap-align: center;
   }
   .video-band {
     min-height: 420px;
@@ -1327,7 +1360,8 @@ h3 { font-size: 1.75rem; }
     top: 0;
   }
   .video-card {
-    aspect-ratio: 4 / 5;
+    flex-basis: 78vw;
+    aspect-ratio: 4 / 5.35;
   }
   .video-card > div,
   .video-band > div {

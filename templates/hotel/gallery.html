@@ -15,7 +15,7 @@
 <section class="masonry gallery-rich">
   {% for image in images %}
     <figure class="gallery-item reveal" data-category="{{ image.category }}">
-      <img src="{% if image.image %}{{ image.image.url }}{% else %}{% static 'images/optimized/12.webp' %}{% endif %}" alt="{{ image.title_en }}" loading="lazy">
+      <img src="{% static image.path %}" alt="{{ image.title_en }}" loading="lazy">
       <figcaption>{% if lang == 'tr' %}{{ image.title_tr }}{% else %}{{ image.title_en }}{% endif %}</figcaption>
     </figure>
   {% endfor %}

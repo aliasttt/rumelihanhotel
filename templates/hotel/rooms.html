@@ -17,7 +17,7 @@
     {% for room in rooms %}
       <article class="room-card reveal">
         <a href="{% url 'hotel:room_detail' lang=lang slug=room.slug %}" class="image-frame mask-reveal">
-          <img src="{% if room.main_image %}{{ room.main_image.url }}{% else %}{% static 'images/optimized/05.webp' %}{% endif %}" alt="{{ room.title_en }}" loading="lazy">
+          <img src="{% static room.optimized_image %}" alt="{{ room.title_en }}" loading="lazy">
         </a>
         <div class="card-body">
           <h2>{% if lang == 'tr' %}{{ room.title_tr }}{% else %}{{ room.title_en }}{% endif %}</h2>

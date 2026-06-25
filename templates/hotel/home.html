@@ -3,8 +3,8 @@
 {% block content %}
 <section class="hero cinematic-hero" data-parallax-section>
   {% for slide in hero_slides|slice:":1" %}
-    <video class="hero-video" data-parallax-speed="0.18" autoplay muted loop playsinline preload="metadata" poster="{% static 'videos/hotel-hero-poster.webp' %}">
-      <source src="{% static 'videos/hotel-hero.mp4' %}" type="video/mp4">
+    <video class="hero-video" data-parallax-speed="0.18" autoplay muted loop playsinline preload="metadata" poster="{% static 'videos/hotel-lobby-poster.webp' %}">
+      <source src="{% static 'videos/hotel-lobby.mp4' %}" type="video/mp4">
     </video>
     <img class="hero-bg hero-fallback" src="{% if slide.image %}{{ slide.image.url }}{% else %}{% static 'images/optimized/02.webp' %}{% endif %}" alt="{{ slide.title_en }}">
     <div class="hero-ornament" data-parallax-speed="-0.08">
@@ -20,8 +20,8 @@
       </div>
     </div>
   {% empty %}
-    <video class="hero-video" data-parallax-speed="0.18" autoplay muted loop playsinline preload="metadata" poster="{% static 'videos/hotel-hero-poster.webp' %}">
-      <source src="{% static 'videos/hotel-hero.mp4' %}" type="video/mp4">
+    <video class="hero-video" data-parallax-speed="0.18" autoplay muted loop playsinline preload="metadata" poster="{% static 'videos/hotel-lobby-poster.webp' %}">
+      <source src="{% static 'videos/hotel-lobby.mp4' %}" type="video/mp4">
     </video>
     <img class="hero-bg hero-fallback" src="{% static 'images/optimized/02.webp' %}" alt="Rumelihan Hotel">
     <div class="hero-content reveal text-reveal">
@@ -99,7 +99,7 @@
     {% for room in featured_rooms %}
       <article class="room-card reveal">
         <a href="{% url 'hotel:room_detail' lang=lang slug=room.slug %}" class="image-frame mask-reveal">
-          <img src="{% if room.main_image %}{{ room.main_image.url }}{% else %}{% static 'images/optimized/05.webp' %}{% endif %}" alt="{{ room.title_en }}" loading="lazy">
+          <img src="{% static room.optimized_image %}" alt="{{ room.title_en }}" loading="lazy">
         </a>
         <div class="card-body">
           <h3>{% if lang == 'tr' %}{{ room.title_tr }}{% else %}{{ room.title_en }}{% endif %}</h3>
@@ -118,7 +118,7 @@
 <section class="center-showcase" data-showcase>
   <div class="showcase-frame">
     <div class="showcase-photo-stack">
-      <img src="{% if showcase and showcase.image %}{{ showcase.image.url }}{% else %}{% static 'images/optimized/10.webp' %}{% endif %}" alt="Rumelihan showcase" loading="lazy">
+      <img src="{% static 'images/optimized/10.webp' %}" alt="Rumelihan showcase" loading="lazy">
       <img src="{% static 'images/optimized/11.webp' %}" alt="Beyoglu Istanbul" loading="lazy">
     </div>
     <div class="showcase-copy">
@@ -154,7 +154,7 @@
   <div class="scroll-track">
     {% for image in gallery_preview %}
       <figure>
-        <img src="{% if image.image %}{{ image.image.url }}{% else %}{% static 'images/optimized/12.webp' %}{% endif %}" alt="{{ image.title_en }}" loading="lazy">
+        <img src="{% static image.path %}" alt="{{ image.title_en }}" loading="lazy">
         <figcaption>{% if lang == 'tr' %}{{ image.title_tr }}{% else %}{{ image.title_en }}{% endif %}</figcaption>
       </figure>
     {% endfor %}

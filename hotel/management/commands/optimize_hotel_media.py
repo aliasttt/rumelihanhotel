@@ -90,15 +90,6 @@ class Command(BaseCommand):
         ffmpeg = imageio_ffmpeg.get_ffmpeg_exe()
         jobs = [
             {
-                "source": source_dir / "HOTEL.mp4",
-                "target": output_dir / "hotel-hero.mp4",
-                "poster": output_dir / "hotel-hero-poster.webp",
-                "start": "00:00:08",
-                "duration": "14",
-                "vf": "scale=1280:720:force_original_aspect_ratio=increase,crop=1280:720",
-                "crf": "30",
-            },
-            {
                 "source": source_dir / "HOTEL 01.mp4",
                 "target": output_dir / "hotel-lobby.mp4",
                 "poster": output_dir / "hotel-lobby-poster.webp",
