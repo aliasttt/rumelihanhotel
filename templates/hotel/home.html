@@ -143,7 +143,7 @@
   </div>
   <div class="service-grid stagger">
     {% for service in services_preview %}
-      <article class="service-card reveal">
+      <article class="service-card media-service-card service-{{ service.icon|default:'rh'|slugify }} reveal"{% if service.image %} style="--service-image: url('{{ service.image.url }}');"{% endif %}>
         <span class="service-icon">{{ service.icon|default:"RH" }}</span>
         <h3>{% if lang == 'tr' %}{{ service.title_tr }}{% else %}{{ service.title_en }}{% endif %}</h3>
         <p>{% if lang == 'tr' %}{{ service.description_tr }}{% else %}{{ service.description_en }}{% endif %}</p>

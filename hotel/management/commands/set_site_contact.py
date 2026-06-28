@@ -10,6 +10,7 @@ class Command(BaseCommand):
         settings = SiteSettings.get_solo()
         settings.phone = "+90 541 122 67 05"
         settings.whatsapp = "905411226705"
+        settings.email = "Booking@rumelihanhotel.com"
         settings.address_tr = "Şehit Muhtar, İstiklal Cd. No:48, 34435 Beyoğlu/İstanbul"
         settings.address_en = "Şehit Muhtar, İstiklal Cd. No:48, 34435 Beyoğlu/Istanbul"
         settings.google_maps_link = (

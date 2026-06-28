@@ -100,7 +100,7 @@ class Command(BaseCommand):
         settings.hotel_name = "Rumelihan Hotel"
         settings.phone = "+90 541 122 67 05"
         settings.whatsapp = "905411226705"
-        settings.email = "info@rumelihanhotel.com"
+        settings.email = "Booking@rumelihanhotel.com"
         settings.address_tr = "Beyoğlu, İstanbul. İstiklal Caddesi ve Taksim'e yürüme mesafesinde."
         settings.address_en = "Beyoglu, Istanbul. Within walking distance of Istiklal Street and Taksim."
         settings.instagram_url = "https://www.instagram.com/"
