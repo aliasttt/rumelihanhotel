@@ -26,7 +26,7 @@ OPTIMIZED_GALLERY = [
     {"path": "images/optimized/05.webp", "title_tr": "Butik Oda", "title_en": "Boutique Room", "category": "rooms"},
     {"path": "images/optimized/06.webp", "title_tr": "Aile Konforu", "title_en": "Family Comfort", "category": "rooms"},
     {"path": "images/optimized/07.webp", "title_tr": "Sakin Konaklama", "title_en": "Calm Stay", "category": "rooms"},
-    {"path": "images/optimized/10.webp", "title_tr": "Kahvaltı", "title_en": "Breakfast", "category": "hotel"},
+    {"path": "images/services/breakfast.webp", "title_tr": "Kahvaltı", "title_en": "Breakfast", "category": "hotel"},
     {"path": "images/optimized/11.webp", "title_tr": "Beyoğlu", "title_en": "Beyoglu", "category": "beyoglu"},
     {"path": "images/optimized/12.webp", "title_tr": "Oda Işığı", "title_en": "Room Light", "category": "rooms"},
     {"path": "images/optimized/13.webp", "title_tr": "Banyo Detayı", "title_en": "Bathroom Detail", "category": "details"},
@@ -44,9 +44,9 @@ ROOM_IMAGE_PATHS = [
 ]
 
 ROOM_DETAIL_IMAGE_PATHS = [
-    "images/optimized/13.webp",
+    "images/optimized/16.webp",
+    "images/optimized/17.webp",
     "images/optimized/03.webp",
-    "images/optimized/10.webp",
 ]
 
 ATTRACTION_IMAGE_PATHS = [

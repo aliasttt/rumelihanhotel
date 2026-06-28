@@ -282,7 +282,7 @@ class Command(BaseCommand):
                 },
             )
             room = Room.objects.get(slug=item["slug"])
-            for index, label in enumerate(["Interior Detail", "Bathroom", "Breakfast Mood"], start=1):
+            for index, label in enumerate(["Interior Detail", "Room Mood", "Historic Detail"], start=1):
                 RoomGalleryImage.objects.update_or_create(
                     room=room,
                     ordering=index,
