@@ -23,6 +23,8 @@
     <h2>{% if lang == 'tr' %}Oda Özellikleri{% else %}Room Features{% endif %}</h2>
     <p>{% if lang == 'tr' %}{{ room.full_description_tr }}{% else %}{{ room.full_description_en }}{% endif %}</p>
     <ul class="feature-list">
+      {% if room.price %}<li class="room-price">{{ room.price }}</li>{% endif %}
+      <li>{% if lang == 'tr' %}Kahvaltı kişi başı +$15{% else %}Breakfast +$15 per person{% endif %}</li>
       <li>{{ room.capacity }} {% if lang == 'tr' %}kişi kapasitesi{% else %}guest capacity{% endif %}</li>
       <li>{% if lang == 'tr' %}{{ room.bed_type_tr }}{% else %}{{ room.bed_type_en }}{% endif %}</li>
       {% if room.size %}<li>{{ room.size }}</li>{% endif %}

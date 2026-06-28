@@ -75,9 +75,9 @@
   <h2>{% if lang == 'tr' %}Beyoğlu'nun Tarihi Dokusunda Zarif Bir Konaklama{% else %}An Elegant Stay in the Historic Texture of Beyoglu{% endif %}</h2>
   <p>{% if lang == 'tr' %}Rumelihan Hotel, klasik İstanbul ruhunu sıcak misafirperverlik, özenli detaylar ve koyu yeşil-altın bir atmosferle buluşturan seçkin bir şehir otelidir.{% else %}Rumelihan Hotel is a refined city hotel where classic Istanbul spirit meets warm hospitality, thoughtful details and a deep green-and-gold atmosphere.{% endif %}</p>
   <div class="stat-row">
+    <span><strong>170</strong>{% if lang == 'tr' %} oda{% else %} rooms{% endif %}</span>
+    <span><strong>25</strong>{% if lang == 'tr' %} her katta oda{% else %} rooms per floor{% endif %}</span>
     <span><strong>4</strong>{% if lang == 'tr' %} oda tipi{% else %} room types{% endif %}</span>
-    <span><strong>24/7</strong>{% if lang == 'tr' %} resepsiyon{% else %} reception{% endif %}</span>
-    <span><strong>5 dk</strong>{% if lang == 'tr' %} İstiklal{% else %} to Istiklal{% endif %}</span>
   </div>
 </section>
 
@@ -99,9 +99,9 @@
   <div class="section-head reveal">
     <p class="eyebrow">{% if lang == 'tr' %}Konaklama{% else %}Stay{% endif %}</p>
       <div><h3>{% if lang == 'tr' %}Tarihi doku, modern konforla buluşur.{% else %}Historic texture meets modern comfort.{% endif %}</h3></div>
-    <p>{% if lang == 'tr' %}Tek kişilik seyahatlerden aile konaklamalarına kadar, her oda sade lüks ve tarihi sıcaklık duygusunu taşır.{% else %}From solo travel to family stays, each room carries a quiet sense of luxury and historical warmth.{% endif %}</p>
+    <p>{% if lang == 'tr' %}Single Queen, Twin, Double ve VIP Triple seçeneklerinde sade lüks ve tarihi sıcaklık duygusu bir aradadır. Kahvaltı kişi başı +$15 olarak eklenebilir.{% else %}Single Queen, Twin, Double and VIP Triple options carry a quiet sense of luxury and historical warmth. Breakfast can be added for +$15 per person.{% endif %}</p>
   </div>
-  <div class="card-grid stagger">
+  <div class="card-grid rooms-home-grid stagger">
     {% for room in featured_rooms %}
       <article class="room-card reveal">
         <a href="{% url 'hotel:room_detail' lang=lang slug=room.slug %}" class="image-frame mask-reveal">
@@ -113,6 +113,7 @@
           <div class="room-meta">
             <span>{{ room.capacity }} {% if lang == 'tr' %}kişi{% else %}guests{% endif %}</span>
             <span>{% if lang == 'tr' %}{{ room.bed_type_tr }}{% else %}{{ room.bed_type_en }}{% endif %}</span>
+            {% if room.price %}<span>{{ room.price }}</span>{% endif %}
           </div>
           <a class="text-link" href="{% url 'hotel:room_detail' lang=lang slug=room.slug %}">{% if lang == 'tr' %}Detayları Gör{% else %}View Details{% endif %}</a>
         </div>

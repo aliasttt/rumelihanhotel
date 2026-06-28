@@ -83,8 +83,8 @@ class Command(BaseCommand):
         hero_image = self.create_seed_image("rumelihan-hero.jpg", "Historic boutique stay", (1800, 1100))
         room_images = {
             "single-room": self.create_seed_image("single-room.jpg", "Single Room"),
+            "twin-room": self.create_seed_image("double-room.jpg", "Twin Room"),
             "double-room": self.create_seed_image("double-room.jpg", "Double Room"),
-            "family-room": self.create_seed_image("family-room.jpg", "Family Room"),
             "vip-triple-room": self.create_seed_image("vip-triple-room.jpg", "VIP Triple Room"),
         }
         gallery_images = [
@@ -190,6 +190,75 @@ class Command(BaseCommand):
             },
         ]
 
+        rooms = [
+            {
+                "slug": "single-room",
+                "title_tr": "Single Queen Oda",
+                "title_en": "Single Queen Room",
+                "short_tr": "Tek misafirler icin queen yatakli sakin ve islevsel oda.",
+                "short_en": "A calm and practical queen-bed room for solo guests.",
+                "full_tr": "Single Queen odamiz, Beyoglu kesfi veya is seyahati icin queen yatak konforuyla rahat bir dinlenme alani sunar.",
+                "full_en": "Our Single Queen Room offers a comfortable queen-bed retreat for Beyoglu discoveries or business travel.",
+                "capacity": 1,
+                "bed_tr": "Queen yatak",
+                "bed_en": "Queen bed",
+                "features_tr": "Klima, Ucretsiz Wi-Fi, Dus, Calisma alani, Gunluk temizlik",
+                "features_en": "Air conditioning, Free Wi-Fi, Shower, Work area, Daily cleaning",
+                "price": "$100",
+                "ordering": 1,
+            },
+            {
+                "slug": "twin-room",
+                "title_tr": "Twin Oda",
+                "title_en": "Twin Room",
+                "short_tr": "Iki ayri yatakla seyahat eden iki misafir icin pratik oda.",
+                "short_en": "A practical room with two separate beds for two guests.",
+                "full_tr": "Twin odamiz, iki ayri yatak isteyen misafirler icin temiz, konforlu ve kullanisli bir konaklama sunar.",
+                "full_en": "Our Twin Room offers a clean, comfortable and practical stay for guests who prefer two separate beds.",
+                "capacity": 2,
+                "bed_tr": "Iki tek kisilik yatak",
+                "bed_en": "Two single beds",
+                "features_tr": "Klima, Ucretsiz Wi-Fi, Banyo urunleri, Gardrop, Gunluk temizlik",
+                "features_en": "Air conditioning, Free Wi-Fi, Bath amenities, Wardrobe, Daily cleaning",
+                "price": "$120",
+                "ordering": 2,
+            },
+            {
+                "slug": "double-room",
+                "title_tr": "Double Oda",
+                "title_en": "Double Room",
+                "short_tr": "Iki misafir icin cift kisilik yatakli konforlu oda.",
+                "short_en": "A comfortable double-bed room for two guests.",
+                "full_tr": "Double odamiz klasik dekorasyonu, cift kisilik yatagi ve sakin atmosferiyle sehir sonrasi dinlenmek icin idealdir.",
+                "full_en": "Our Double Room is ideal after a day in the city, with classic decor, a double bed and a calm atmosphere.",
+                "capacity": 2,
+                "bed_tr": "Cift kisilik yatak",
+                "bed_en": "Double bed",
+                "features_tr": "Klima, Ucretsiz Wi-Fi, Banyo urunleri, Gardrop, Gunluk temizlik",
+                "features_en": "Air conditioning, Free Wi-Fi, Bath amenities, Wardrobe, Daily cleaning",
+                "price": "$130",
+                "ordering": 3,
+            },
+            {
+                "slug": "vip-triple-room",
+                "title_tr": "VIP Triple Oda",
+                "title_en": "VIP Triple Room",
+                "short_tr": "Uc misafir icin seckin detaylara sahip ozel oda.",
+                "short_en": "A distinguished room with refined details for three guests.",
+                "full_tr": "VIP Triple odamiz, daha genis kullanim ve geleneksel dokularla premium bir butik otel deneyimi sunar.",
+                "full_en": "Our VIP Triple Room delivers a premium boutique experience with extra comfort and traditional textures.",
+                "capacity": 3,
+                "bed_tr": "Uc kisilik yatak duzeni",
+                "bed_en": "Triple bed layout",
+                "features_tr": "Klima, Ucretsiz Wi-Fi, Genis oda, Banyo urunleri, Gunluk temizlik",
+                "features_en": "Air conditioning, Free Wi-Fi, Spacious room, Bath amenities, Daily cleaning",
+                "price": "$150",
+                "ordering": 4,
+            },
+        ]
+
+        Room.objects.filter(slug="family-room").update(active=False)
+
         for item in rooms:
             Room.objects.update_or_create(
                 slug=item["slug"],
@@ -206,7 +275,7 @@ class Command(BaseCommand):
                     "size": "18-32 m2",
                     "features_tr": item["features_tr"],
                     "features_en": item["features_en"],
-                    "price": "On request",
+                    "price": item["price"],
                     "main_image": room_images[item["slug"]],
                     "active": True,
                     "ordering": item["ordering"],
@@ -331,8 +400,8 @@ class Command(BaseCommand):
             )
 
         faqs = [
-            ("rooms", "Odalar kaç kişiliktir?", "How many guests can the rooms host?", "Single, Double, Family ve VIP Triple oda seçenekleri vardır.", "Single, Double, Family and VIP Triple room options are available."),
-            ("rooms", "Odalar aileler için uygun mu?", "Are the rooms suitable for families?", "Family odamız birlikte seyahat eden misafirler için daha geniş kullanım sunar.", "Our Family Room offers more generous use for guests travelling together."),
+            ("rooms", "Odalar kaç kişiliktir?", "How many guests can the rooms host?", "Single Queen, Twin, Double ve VIP Triple oda seçenekleri vardır.", "Single Queen, Twin, Double and VIP Triple room options are available."),
+            ("rooms", "Twin ve Double oda farkı nedir?", "What is the difference between Twin and Double rooms?", "Twin odada iki ayrı yatak, Double odada çift kişilik yatak bulunur.", "Twin rooms have two separate beds, while Double rooms have one double bed."),
             ("rooms", "Fiyatlar sabit mi?", "Are prices fixed?", "Fiyatlar sezona ve müsaitliğe göre değişebilir; güncel bilgi için iletişime geçebilirsiniz.", "Prices may vary by season and availability; please contact us for current information."),
             ("contact", "Rezervasyon talebi kesin rezervasyon mudur?", "Is a reservation request a confirmed booking?", "Talebiniz alındıktan sonra ekip sizinle iletişime geçerek detayları netleştirir.", "After your request is received, the team contacts you to confirm details."),
             ("contact", "WhatsApp ile iletişim kurulabilir mi?", "Can I contact by WhatsApp?", "Evet, WhatsApp hattı üzerinden hızlı sorularınızı iletebilirsiniz.", "Yes, you can send quick questions through WhatsApp."),

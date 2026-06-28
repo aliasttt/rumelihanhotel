@@ -29,6 +29,19 @@
   {% endfor %}
 </section>
 
+<section class="event-venue reveal">
+  <div>
+    <p class="eyebrow">{% if lang == 'tr' %}Workshop & Event{% else %}Workshop & Event{% endif %}</p>
+    <h2>{% if lang == 'tr' %}Roof ve tarihi tünel alanları workshop ve özel etkinlikler için kullanılabilir.{% else %}The roof and historic tunnel areas can be used for workshops and private events.{% endif %}</h2>
+    <p>{% if lang == 'tr' %}Küçük ekip buluşmaları, yaratıcı workshoplar, marka toplantıları ve butik eventler için otelin atmosferik alanları rezervasyon öncesinde planlanabilir.{% else %}For small team gatherings, creative workshops, brand meetings and boutique events, the hotel's atmospheric spaces can be planned before reservation.{% endif %}</p>
+    <a class="btn gold" href="{% url 'hotel:contact' lang=lang %}">{% if lang == 'tr' %}Etkinlik İçin Sorun{% else %}Ask for an Event{% endif %}</a>
+  </div>
+  <div class="event-venue-media" aria-hidden="true">
+    <img src="{% static 'images/optimized/14.webp' %}" alt="" loading="lazy">
+    <img src="{% static 'images/optimized/11.webp' %}" alt="" loading="lazy">
+  </div>
+</section>
+
 <section class="section">
   <div class="section-head reveal">
     <p class="eyebrow">{% if lang == 'tr' %}Öne Çıkanlar{% else %}Highlights{% endif %}</p>

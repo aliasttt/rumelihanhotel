@@ -118,7 +118,7 @@ def home(request, lang):
     context.update(
         {
             "hero_slides": HeroSlide.objects.filter(active=True),
-            "featured_rooms": with_optimized_room_images(Room.objects.filter(active=True)[:3]),
+            "featured_rooms": with_optimized_room_images(Room.objects.filter(active=True)[:4]),
             "gallery_preview": OPTIMIZED_GALLERY[:6],
             "services_preview": ServiceCard.objects.filter(active=True)[:4],
             "showcase": ShowcaseSection.objects.filter(active=True).first(),
@@ -145,8 +145,8 @@ def rooms(request, lang):
         "rooms",
         "Odalar",
         "Rooms",
-        "Single, Double, Family ve VIP Triple odalar.",
-        "Single, Double, Family and VIP Triple rooms.",
+        "Single Queen, Twin, Double ve VIP Triple odalar.",
+        "Single Queen, Twin, Double and VIP Triple rooms.",
     )
     context["rooms"] = with_optimized_room_images(Room.objects.filter(active=True))
     context["faqs"] = FAQ.objects.filter(active=True, page="rooms")
